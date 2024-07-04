@@ -1,0 +1,148 @@
+﻿
+
+@charset "UTF-8";
+/* CSS Document */
+
+* { box-sizing:border-box; -moz-box-sizing:border-box;}
+body { background-color: #FFFFFF; margin:0; padding:0; }
+html { margin:100; padding:100; }
+
+
+}
+
+/* Container */
+
+#container { background-color: #;  width:10px;  color:#FFFFFF; margin:1000px auto; padding:20px 20px; border-style:hidden;}
+
+/* Headers and Text*/
+
+h1 {font-size: 3em; margin:10px  0  30px  0; text-align:center; }
+
+h2 {font-size: 3em; margin:20px  0  20px  0; text-align:center; text-decoration:underline; }
+
+h3 {font-size: 1.5em; margin:20px  0  20px  0; text-align:center; color: aliceblue }
+
+h4 {font-size: 2.5em; margin:20px  0  20px  0; text-align:center; color: black;}
+
+
+p {font-size: 1.5em; margin:50px  60px  10px  20px; text-align:center; padding: 20px 10px; color:white; }
+
+
+.standardtext {margin-top:0; margin-left:300px; margin-right:0; margin-bottom:20px; width:850px; color:#FFFFFF; }
+
+.nobullet {list-style:none; width:850px; margin:50px auto 2000px auto;}
+
+
+.simpletext {color:#EB4F28;}
+#nav {background-image: url("Backlogo2.png"); border-radius: 50px; opacity: 70%; }
+#nav ul {list-style:none; margin:0; padding:10px 10px; text-align:center;}	
+#nav ul li {display:inline-block;}
+#nav ul li a {color:#7C4384; text-decoration:none; font-size:2em; padding:10px 50px; display:inline-block; font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", "monospace";}
+#nav ul li a:hover {color:#000000; text-decoration:underline; background:#4c4f51; border-radius: 50px; }.about.html {
+}
+
+
+
+button {
+  border: none;
+  color: black;
+  padding: 60px 60px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 20px 20px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+	background-color: grey;
+	float: right;
+	opacity: 50%;
+}
+
+.button1 {
+  background-color: white;
+  color: black;
+  border: 2px solid #4CAF50;
+}
+
+.button1:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.button2 {
+  background-color: white;
+  color: black;
+  border: 2px solid #008CBA;
+}
+
+.button2:hover {
+  background-color: #008CBA;
+  color: white;
+}
+
+</style>
+</head>
+<body>
+
+<button class="button button1">Green</button>
+<button class="button button2">Blue</button>
+
+* {
+  box-sizing: border-box;
+}
+
+/* Style inputs */
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+/* Style the container/contact section */
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 10px;
+}
+
+/* Create two columns that float next to eachother */
+.column {
+  float: right;
+  width: 50%;
+  margin-top: 6px;
+  padding: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+.doc.html {
+}
+
