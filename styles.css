@@ -213,7 +213,7 @@
 .main{
   background-image: url('/WorkImages/space.jpg');
   background-color: black;
-background-repeat:repeat;
+background-repeat:round;
 padding: 300px 0;}
 
 .mainContainer{
@@ -545,6 +545,7 @@ border-radius: 30px;
     -moz-text-fill-color: transparent;
     margin-bottom: 5rem;
     font-size: 2.5rem;
+    text-align: center;
   }
   
   .services__wrapper {
@@ -771,12 +772,14 @@ h8 {
 
 .services1 {
   background-image:url(/WorkImages/space.jpg);
+  background-repeat: round;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
   padding: 10rem 0;
+
 }
 
 .services1 h1 {
@@ -789,6 +792,7 @@ h8 {
   -moz-text-fill-color: transparent;
   margin-bottom: 5rem;
   font-size: 2.5rem;
+  text-align: center;
 }
 
 .services1__wrapper {
