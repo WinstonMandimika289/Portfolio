@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Winston's Portfolio</title>
+    <title>Scroll Website</title>
     <link rel="stylesheet" href="styles.css" />
     <link
       rel="stylesheet"
@@ -12,68 +12,61 @@
       crossorigin="anonymous"
     />
   </head>
-  <style>
-    
- 
-    
-  </style>
   <body>
-
-   
- <!-- Navbar Section -->
- <nav class="navbar">
-  <div class="navbar__container">
-    <a href="#home" id="navLogo"><img src="/WorkImages/Untitled-3.png" height="75"></a>
-    <div class="navbar__toggle" id="mobile-menu">
-      <span class="bar"></span> <span class="bar"></span>
-      <span class="bar"></span>
-    </div>
-    <ul class="navbar__menu">
-      <li class="navbar__item">
-        <a href="#home" class="navbar__links">Home</a>
-      </li>
-      <li class="navbar__item">
-        <a href="#about" class="navbar__links">CV</a>
-        <li class="navbar__item">
-          <a href="#services" class="navbar__links">Coding Projects</a>
-      </li>
-      <li class="navbar__item">
-        <a href="#services1" class="navbar__links">Design Work</a>
-      </li>
-      
-  </div>
-</nav>
-          
+    <!-- Navbar Section -->
+    <nav class="navbar">
+      <div class="navbar__container">
+        <a href="#home" id="navLogo"><img src="/WorkImages/Untitled-3.png" height="50"></a>
+       
+        <div class="navbar__toggle" id="mobile-menu">
+          <span class="bar"></span> <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        <ul class="navbar__menu">
+          <li class="navbar__item">
+            <a href="#home" class="navbar__links">Home</a>
+          </li>
+          <li class="navbar__item">
+            <a href="#about" class="navbar__links">CV</a>
+            <li class="navbar__item">
+              <a href="#services" class="navbar__links">Coding Projects</a>
+          </li>
+          <li class="navbar__item">
+            <a href="#services1" class="navbar__links">Design Work</a>
+          </li>
+          <li class="navbar__btn">
+            <a href="#sign-up" class="button" id="signup">Feedback</a>
+          </li>
+        </ul>
       </div>
     </nav>
 
     <!-- Hero Section -->
-    <div class="main" id="home">
-      <div class="mainContainer">
-        
-        <h1 class="heading">Welcome <span>To My Portfolio</span> </h1>
-       
+    <div class="hero" id="home">
+      <div class="hero__container">
+        <h1 class="hero__heading">Welcome to my <span>Portfolio</span></h1>
+        <p class="hero__description">Junior Software Developer</p>
+        <button class="main__btn"><a href="#">Explore</a></button>
       </div>
     </div>
 
     <!-- About Section -->
-    <div class="mainA" id="about">
-      <div class="containerA">
-    
-          
-       <div class="imgContainer"> <iframe src="/MyCV.pdf" height="500vh" width="400vw"> </iframe></div>
-          
-          <button class="mainBtn"><a href="/MyCV.pdf">View</a></button>
+    <div class="main" id="about">
+      <div class="main__container">
+        <div class="main__img--container">
+          <div class="main__img--card"><iframe src="/MyCV.pdf" height="500vh"> </iframe></div>
         </div>
+        <div class="main__content">
+          <h1>Welcome to my portfolio! I'm a Digital Media Production graduate</h1>
+          <h8>Explore my work in HTML, CSS, C#, and JavaScript as I launch my career as a Software Developer</h8>
+          <br>
+          <button class="main__btn"><a href="/MyCV.pdf">View CV</a></button>
         </div>
-        
-          
-         
-          
       </div>
     </div>
 
-
+    <!-- Services Section -->
+   
     <div class="services" id="services">
       <h1>HTML, CSS, Javascript and C#</h1>
       <div class="services__wrapper">
