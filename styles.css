@@ -192,7 +192,7 @@
 
 /* Hero Section */
 .hero {
-  background-image:url(/WorkImages/pexels-felixmittermeier-957040.jpg);
+ background-image:url(/WorkImages/pexels-felixmittermeier-957040.jpg);
   background-repeat: round;
   padding: 200px 0;
 }
@@ -235,23 +235,28 @@
 }
 
 .hero__description {
-  font-size: 60px;
-  background: #da22ff; /* fallback for old browsers */
+  font-size: 30px;
+  background: #ee0979; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,
-    #9114ff,
-    #da22ff
+    White,
+    navy,
+    white
   ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
     to right,
-    #8f0eff,
-    #da22ff
+  rgb(162, 105, 0),
+    
+  orange,
+   whitesmoke,
+   orange
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background-size: 100%;
   -webkit-background-clip: text;
   -moz-background-clip: text;
   -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
+  -mo-text-fill-color: transparent;
+font-weight: bolder;
 }
 
 .highlight {
@@ -270,7 +275,19 @@
 
 /* About Section */
 .main {
-  background-color: #131313;
+  background: linear-gradient(
+    to right,
+ 
+    
+  black,
+  
+  rgb(38, 37, 37)
+,
+black,
+rgb(38, 37, 37),
+rgb(38, 37, 37)
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+ 
   padding: 10rem 0;
 }
 
@@ -494,7 +511,7 @@
 
 }
 
-h8  {  font-size: 2rem;
+h8  {  font-size: 1.5rem;
   background: #ff8177; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,
@@ -514,7 +531,25 @@ h8  {  font-size: 2rem;
 }
 
 
-
+h9  {  font-size: 4rem;
+  background: #ff8177; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #9114ff,
+    #da22ff
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #8f0eff,
+    #da22ff
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  font-weight: bolder;
+}
 
 .services h1 {
   background-color: #ff8177;
