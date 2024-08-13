@@ -100,6 +100,25 @@
   transition: all 0.3s ease;
 }
 
+h5 span {
+  background: #ee0979; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #ff6a00,
+    #ee0979
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #ff6a00,
+    #ee0979
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -mo-text-fill-color: transparent;
+}
+
 @media screen and (max-width: 960px) {
   .navbar__container {
     display: flex;
@@ -292,6 +311,17 @@ rgb(38, 37, 37),
 rgb(38, 37, 37)
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
  
+  padding: 10rem 0;
+}
+
+.main1 {
+  background-image:url(/WorkImages/mountains1.png);
+  background-repeat:round;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
   padding: 10rem 0;
 }
 
@@ -598,7 +628,8 @@ text-align: center;}
 
 /* Services Section */
 .services {
-  background: #131313;
+  background-image:url(/WorkImages/space10.png);
+  background-repeat: round;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -608,8 +639,20 @@ text-align: center;}
 }
 
 .services1 {
-  background-image:url(/WorkImages/space.jpg);
-  background-repeat: round;
+  background: linear-gradient(
+    to right,
+ 
+    
+  black,
+  
+  rgb(38, 37, 37)
+,
+black,
+rgb(38, 37, 37),
+rgb(38, 37, 37)
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+ 
+  padding: 10rem 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -624,6 +667,37 @@ h8  {  font-size: 1.5rem;
   text-align: CENTER;
 }
 
+h5 {  font-size: 1.8rem;
+  
+  
+  background: #ff8177; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #9114ff,
+    #da22ff
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #8f0eff,
+    orange,
+    white,
+    orange,
+    yellow,
+    #da22ff
+    
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  font-weight: bolder;
+  
+}
+
+h6 {font-weight: bolder;
+font-size: 2rem;
+color: white;}
 
 h9  {  font-size: 3rem;
   background: #ff8177; /* fallback for old browsers */
