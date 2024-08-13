@@ -311,6 +311,7 @@ rgb(38, 37, 37)
 .main__content {
   color: #fff;
   width: 100%;
+  
 }
 
 .main__content h1 {
@@ -485,8 +486,14 @@ text-align: center;}
 @media screen and (max-width: 480px) {
   .main__img--card {
     width: 250px;
-    height: 250px;
+    height: 500px;
   }
+
+  iframe {
+    width: 100%;  /* Set the iframe width to 100% of its container */
+    height: 100%; /* Adjust the height to maintain aspect ratio if needed */
+}
+
 
   .fa-users,
   .fa-layer-group {
@@ -861,6 +868,7 @@ h9  {  font-size: 3rem;
     display: none;
   }
 
+ 
 
 
 @media screen and (max-width: 480px) {
