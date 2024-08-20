@@ -297,7 +297,7 @@ font-weight: bolder;
 }
 
 /* About Section */
-.main {
+.MyCV{
   background: linear-gradient(
     to right,
  
@@ -314,7 +314,7 @@ rgb(38, 37, 37)
   padding: 10rem 0;
 }
 
-.main1 {
+.Feedback {
   background-image:url(/WorkImages/mountains1.png);
   background-repeat:round;
   display: flex;
@@ -627,7 +627,7 @@ text-align: center;}
 }
 
 /* Services Section */
-.services {
+.Projects {
   background-image:url(/WorkImages/space10.png);
   background-repeat: round;
   display: flex;
@@ -638,7 +638,7 @@ text-align: center;}
   padding: 10rem 0;
 }
 
-.services1 {
+.DesignWork {
   background: linear-gradient(
     to right,
  
