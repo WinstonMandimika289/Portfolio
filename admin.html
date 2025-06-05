@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <style>
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
+        .pending { color: orange; }
+        .approved { color: green; }
+        a { margin-right: 8px; cursor: pointer; }
+
+        /* Modal styles */
+        #editModal {
+            display: none;
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -20%);
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        #modalOverlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 998;
+        }
+    </style>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <p>Welcome, <span id="adminName">Admin</span></p>
+
+    <h2>User Management</h2>
+    <table id="userTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <a href="logout.php">Logout</a>
+
+    <!-- Modal -->
+    <div id="modalOverlay"></div>
+    <div id="editModal">
+        <h3>Edit User</h3>
+        <form id="editForm">
+            <input type="hidden" id="editId">
+            <label>Username: <input type="text" id="editUsername" required></label><br><br>
+            <label>Email: <input type="email" id="editEmail" required></label><br><br>
+            <label>Role:
+                <select id="editRole">
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </label><br><br>
+            <button type="submit">Save</button>
+            <button type="button" onclick="closeModal()">Cancel</button>
+        </form>
+    </div>
+
+    <script>
+        function loadUsers() {
+            fetch('api/get_users.php')
+                .then(res => res.json())
+                .then(data => {
+                    const tbody = document.querySelector("#userTable tbody");
+                    tbody.innerHTML = '';
+                    data.forEach(user => {
+                        const tr = document.createElement('tr');
+                        const statusClass = user.is_approved == 1 ? 'approved' : 'pending';
+                        const statusText = user.is_approved == 1 ? 'Approved' : 'Pending';
+
+                        tr.innerHTML = `
+                            <td>${user.id}</td>
+                            <td>${user.username}</td>
+                            <td>${user.email}</td>
+                            <td>${user.role.charAt(0).toUpperCase() + user.role.slice(1)}</td>
+                            <td class="${statusClass}">${statusText}</td>
+                            <td>
+                                ${user.is_approved == 0 ? `<a onclick="approveUser(${user.id})">Approve</a>` : ''}
+                                <a onclick="deleteUser(${user.id})">Delete</a>
+                                ${user.role === 'user' ? `<a onclick="makeAdmin(${user.id})">Make Admin</a>` : ''}
+                                <a onclick="openEditModal(${user.id}, '${user.username}', '${user.email}', '${user.role}')">Edit</a>
+                            </td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+                });
+        }
+
+        function approveUser(id) {
+            fetch(`api/approve_user.php?id=${id}`)
+                .then(res => res.ok ? loadUsers() : alert("Failed to approve"));
+        }
+
+        function deleteUser(id) {
+            if (confirm('Are you sure?')) {
+                fetch(`api/delete_user.php?id=${id}`)
+                    .then(res => res.ok ? loadUsers() : alert("Failed to delete"));
+            }
+        }
+
+        function makeAdmin(id) {
+            fetch(`api/make_admin.php?id=${id}`)
+                .then(res => res.ok ? loadUsers() : alert("Failed to make admin"));
+        }
+
+        function openEditModal(id, username, email, role) {
+            document.getElementById('editId').value = id;
+            document.getElementById('editUsername').value = username;
+            document.getElementById('editEmail').value = email;
+            document.getElementById('editRole').value = role;
+            document.getElementById('editModal').style.display = 'block';
+            document.getElementById('modalOverlay').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('editModal').style.display = 'none';
+            document.getElementById('modalOverlay').style.display = 'none';
+        }
+
+        document.getElementById('editForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const id = document.getElementById('editId').value;
+            const username = document.getElementById('editUsername').value;
+            const email = document.getElementById('editEmail').value;
+            const role = document.getElementById('editRole').value;
+
+            fetch('api/update_user.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id, username, email, role })
+            })
+            .then(res => res.ok ? (closeModal(), loadUsers()) : alert("Failed to update user"));
+        });
+
+        document.addEventListener('DOMContentLoaded', loadUsers);
+    </script>
+</body>
+</html>

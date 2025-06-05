@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orb - Membership Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-color: #6c63ff;
+            --secondary-color: #4d44db;
+            --dark-color: #2a2a2a;
+            --light-color: #f8f9fa;
+            --gray-color: #6c757d;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+            --info-color: #17a2b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: #f5f7fa;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        .membership-container {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            color: var(--gray-color);
+            text-decoration: none;
+        }
+
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background-color: rgba(108, 99, 255, 0.1);
+            color: var(--primary-color);
+        }
+
+        .sidebar-menu a i {
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Membership Content */
+        .membership-content {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+
+        /* Current Plan */
+        .current-plan {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .plan-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .plan-status {
+            display: inline-block;
+            padding: 5px 15px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .plan-features {
+            margin-bottom: 20px;
+        }
+
+        .plan-features li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .plan-features li i {
+            color: var(--success-color);
+        }
+
+        .plan-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: white;
+            color: var(--primary-color);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Billing History */
+        .billing-history {
+            margin-top: 40px;
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .billing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .billing-table th, .billing-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .billing-table th {
+            color: var(--gray-color);
+            font-weight: 600;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-paid {
+            background-color: rgba(40, 167, 69, 0.1);
+            color: var(--success-color);
+        }
+
+        .status-pending {
+            background-color: rgba(255, 193, 7, 0.1);
+            color: var(--warning-color);
+        }
+
+        .status-failed {
+            background-color: rgba(220, 53, 69, 0.1);
+            color: var(--danger-color);
+        }
+
+        /* Payment Methods */
+        .payment-methods {
+            margin-top: 40px;
+            animation: fadeIn 1s ease;
+        }
+
+        .payment-cards {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .payment-card {
+            background-color: var(--light-color);
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .payment-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-default {
+            border: 1px solid var(--primary-color);
+        }
+
+        .card-type {
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card-number {
+            font-family: monospace;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .card-expiry {
+            color: var(--gray-color);
+            font-size: 0.9rem;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn-sm {
+            padding: 5px 10px;
+            font-size: 0.8rem;
+        }
+
+        .btn-danger {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+        .add-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            cursor: pointer;
+            border: 2px dashed #ddd;
+            background-color: transparent;
+        }
+
+        .add-card i {
+            font-size: 2rem;
+            color: var(--gray-color);
+            margin-bottom: 10px;
+        }
+
+        .add-card:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .add-card:hover i {
+            color: var(--primary-color);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray-color);
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--dark-color);
+        }
+
+        .modal-title {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .membership-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .plan-actions {
+                flex-direction: column;
+            }
+            
+            .payment-cards {
+                flex-direction: column;
+            }
+            
+            .payment-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo"><a href="/index.html">Orbis</a></div>
+                <div class="user-menu">
+                    <div class="user-avatar" id="user-avatar">JD</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="membership-container">
+            <aside class="sidebar">
+                <ul class="sidebar-menu">
+                    <li><a href="membership.html"><i class="fas fa-user"></i> Account Overview</a></li>
+                    <li><a href="billing.html" class="active"><i class="fas fa-credit-card"></i> Billing & Payments</a></li>
+                    <li><a href="security.html"><i class="fas fa-lock"></i> Security</a></li>
+                    <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                    <li><a href="support.html"><i class="fas fa-question-circle"></i> Help & Support</a></li>
+                    <li><a href="logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </aside>
+
+            <div class="membership-content">
+                <section class="current-plan" id="current-plan-section">
+                    <h2 class="section-title" style="color: white;">Your Current Plan</h2>
+                    <div class="plan-name" id="plan-name">Professional Website Package</div>
+                    <div class="plan-price" id="plan-price">$99<span class="month">/month</span></div>
+                    <div class="plan-status" id="plan-status">Active • Renews on May 15, 2023</div>
+                    <ul class="plan-features" id="plan-features">
+                        <li><i class="fas fa-check"></i> 10 Page Website</li>
+                        <li><i class="fas fa-check"></i> Mobile Responsive</li>
+                        <li><i class="fas fa-check"></i> Advanced SEO</li>
+                        <li><i class="fas fa-check"></i> CMS Integration</li>
+                    </ul>
+                    <div class="plan-actions">
+                        <button class="btn btn-primary" id="upgrade-plan">Upgrade Plan</button>
+                        <button class="btn btn-outline" id="cancel-plan">Cancel Subscription</button>
+                    </div>
+                </section>
+
+                <section class="billing-history">
+                    <h2 class="section-title">Billing History</h2>
+                    <table class="billing-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Invoice</th>
+                            </tr>
+                        </thead>
+                        <tbody id="billing-table-body">
+                            <!-- Filled by JavaScript -->
+                        </tbody>
+                    </table>
+                </section>
+
+                <section class="payment-methods">
+                    <h2 class="section-title">Payment Methods</h2>
+                    <div class="payment-cards" id="payment-cards-container">
+                        <!-- Filled by JavaScript -->
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Upgrade Plan Modal -->
+    <div class="modal" id="upgrade-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title">Upgrade Your Plan</h2>
+            <form id="upgrade-form">
+                <div class="form-group">
+                    <label for="new-plan">Select New Plan</label>
+                    <select id="new-plan" required>
+                        <option value="">Choose a plan</option>
+                        <option value="basic">Basic ($49/month)</option>
+                        <option value="professional" selected>Professional ($99/month)</option>
+                        <option value="premium">Premium ($199/month)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="billing-cycle">Billing Cycle</label>
+                    <select id="billing-cycle" required>
+                        <option value="monthly">Monthly</option>
+                        <option value="annual">Annual (Save 15%)</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline close-upgrade">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Upgrade Plan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Cancel Plan Modal -->
+    <div class="modal" id="cancel-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title">Cancel Your Subscription</h2>
+            <p>We're sorry to see you go. Your subscription will remain active until the end of your current billing period.</p>
+            <div class="form-group">
+                <label for="cancel-reason">Reason for cancellation (optional)</label>
+                <select id="cancel-reason">
+                    <option value="">Select a reason</option>
+                    <option value="too-expensive">Too expensive</option>
+                    <option value="missing-features">Missing features I need</option>
+                    <option value="not-using">I'm not using the service</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group" id="other-reason-container" style="display: none;">
+                <label for="other-reason">Please specify</label>
+                <input type="text" id="other-reason">
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-outline close-cancel">Go Back</button>
+                <button type="button" class="btn btn-danger" id="confirm-cancel">Cancel Subscription</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Payment Method Modal -->
+    <div class="modal" id="payment-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title">Add Payment Method</h2>
+            <form id="payment-form">
+                <div class="form-group">
+                    <label for="card-number">Card Number</label>
+                    <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required>
+                </div>
+                <div class="form-group">
+                    <label for="card-name">Name on Card</label>
+                    <input type="text" id="card-name" required>
+                </div>
+                <div style="display: flex; gap: 15px;">
+                    <div class="form-group" style="flex: 1;">
+                        <label for="card-expiry">Expiration Date</label>
+                        <input type="text" id="card-expiry" placeholder="MM/YY" required>
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label for="card-cvv">CVV</label>
+                        <input type="text" id="card-cvv" placeholder="123" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="set-default">
+                    <label for="set-default" style="display: inline; font-weight: normal;">Set as default payment method</label>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline close-payment">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Card</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced Database with Plan Details
+        const gwc_db = {
+            users: {
+                'jd@example.com': {
+                    id: 1,
+                    name: 'John Doe',
+                    email: 'jd@example.com',
+                    avatar: 'JD',
+                    plan: 'professional',
+                    billingDate: '2023-05-15',
+                    paymentMethods: [
+                        {
+                            id: 1,
+                            type: 'visa',
+                            last4: '4242',
+                            exp: '04/2025',
+                            default: true
+                        },
+                        {
+                            id: 2,
+                            type: 'mastercard',
+                            last4: '5555',
+                            exp: '08/2024',
+                            default: false
+                        }
+                    ],
+                    billingHistory: [
+                        {
+                            id: 1,
+                            date: '2023-04-15',
+                            description: 'Professional Plan',
+                            amount: 99.00,
+                            status: 'paid',
+                            invoice: 'INV-2023-04-001'
+                        },
+                        {
+                            id: 2,
+                            date: '2023-03-15',
+                            description: 'Professional Plan',
+                            amount: 99.00,
+                            status: 'paid',
+                            invoice: 'INV-2023-03-001'
+                        },
+                        {
+                            id: 3,
+                            date: '2023-02-15',
+                            description: 'Professional Plan',
+                            amount: 99.00,
+                            status: 'paid',
+                            invoice: 'INV-2023-02-001'
+                        },
+                        {
+                            id: 4,
+                            date: '2023-01-15',
+                            description: 'Basic Plan',
+                            amount: 49.00,
+                            status: 'paid',
+                            invoice: 'INV-2023-01-001'
+                        }
+                    ]
+                }
+            },
+            plans: {
+                'basic': {
+                    name: 'Basic Website Package',
+                    price: 49,
+                    features: [
+                        '5 Page Website',
+                        'Mobile Responsive',
+                        'Basic SEO',
+                        'Contact Form'
+                    ],
+                    color: '#4d44db'
+                },
+                'professional': {
+                    name: 'Professional Website Package',
+                    price: 99,
+                    features: [
+                        '10 Page Website',
+                        'Mobile Responsive',
+                        'Advanced SEO',
+                        'CMS Integration'
+                    ],
+                    color: '#6c63ff'
+                },
+                'premium': {
+                    name: 'Premium Website Package',
+                    price: 199,
+                    features: [
+                        'Unlimited Pages',
+                        'Mobile Responsive',
+                        'Advanced SEO',
+                        'E-commerce Functionality',
+                        'Premium Support'
+                    ],
+                    color: '#8a63ff'
+                }
+            }
+        };
+
+        // DOM Elements
+        const userAvatar = document.getElementById('user-avatar');
+        const upgradePlanBtn = document.getElementById('upgrade-plan');
+        const cancelPlanBtn = document.getElementById('cancel-plan');
+        const addCardBtn = document.getElementById('add-card');
+        const billingTableBody = document.getElementById('billing-table-body');
+        const paymentCardsContainer = document.getElementById('payment-cards-container');
+        const currentPlanSection = document.getElementById('current-plan-section');
+        const planNameElement = document.getElementById('plan-name');
+        const planPriceElement = document.getElementById('plan-price');
+        const planStatusElement = document.getElementById('plan-status');
+        const planFeaturesElement = document.getElementById('plan-features');
+
+        // Modals
+        const upgradeModal = document.getElementById('upgrade-modal');
+        const cancelModal = document.getElementById('cancel-modal');
+        const paymentModal = document.getElementById('payment-modal');
+
+        // Close buttons
+        const closeModalButtons = document.querySelectorAll('.close-modal');
+        const closeUpgrade = document.querySelector('.close-upgrade');
+        const closeCancel = document.querySelector('.close-cancel');
+        const closePayment = document.querySelector('.close-payment');
+
+        // Form elements
+        const cancelReason = document.getElementById('cancel-reason');
+        const otherReasonContainer = document.getElementById('other-reason-container');
+        const confirmCancelBtn = document.getElementById('confirm-cancel');
+
+        // Current user (in a real app, this would come from authentication)
+        let currentUser = gwc_db.users['jd@example.com'];
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set user avatar
+            userAvatar.textContent = currentUser.avatar;
+
+            // Render all dynamic content
+            renderCurrentPlan();
+            renderBillingHistory();
+            renderPaymentMethods();
+
+            // Event listeners
+            upgradePlanBtn.addEventListener('click', () => {
+                upgradeModal.style.display = 'flex';
+                animateModal(upgradeModal);
+            });
+
+            cancelPlanBtn.addEventListener('click', () => {
+                cancelModal.style.display = 'flex';
+                animateModal(cancelModal);
+            });
+
+            addCardBtn.addEventListener('click', () => {
+                paymentModal.style.display = 'flex';
+                animateModal(paymentModal);
+            });
+
+            closeModalButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const modal = button.closest('.modal');
+                    modal.style.display = 'none';
+                });
+            });
+
+            closeUpgrade.addEventListener('click', () => {
+                upgradeModal.style.display = 'none';
+            });
+
+            closeCancel.addEventListener('click', () => {
+                cancelModal.style.display = 'none';
+            });
+
+            closePayment.addEventListener('click', () => {
+                paymentModal.style.display = 'none';
+            });
+
+            // Close modal when clicking outside
+            window.addEventListener('click', (e) => {
+                if (e.target.classList.contains('modal')) {
+                    e.target.style.display = 'none';
+                }
+            });
+
+            // Cancel reason change
+            cancelReason.addEventListener('change', (e) => {
+                if (e.target.value === 'other') {
+                    otherReasonContainer.style.display = 'block';
+                } else {
+                    otherReasonContainer.style.display = 'none';
+                }
+            });
+
+            // Confirm cancellation
+            confirmCancelBtn.addEventListener('click', () => {
+                const reason = cancelReason.value;
+                const otherReason = reason === 'other' ? document.getElementById('other-reason').value : null;
+                
+                // Update database
+                updateUserPlan('cancelled', reason, otherReason);
+                
+                // Show confirmation
+                alert('Your subscription has been scheduled for cancellation. You will have access until the end of your billing period.');
+                cancelModal.style.display = 'none';
+                
+                // Reset form
+                cancelReason.value = '';
+                if (otherReasonContainer.style.display === 'block') {
+                    document.getElementById('other-reason').value = '';
+                    otherReasonContainer.style.display = 'none';
+                }
+                
+                // Refresh UI
+                renderCurrentPlan();
+            });
+
+            // Form submissions
+            document.getElementById('upgrade-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const newPlan = document.getElementById('new-plan').value;
+                const billingCycle = document.getElementById('billing-cycle').value;
+                
+                // Update database
+                updateUserPlan(newPlan, billingCycle);
+                
+                // Show confirmation
+                alert(`Your plan has been updated to ${gwc_db.plans[newPlan].name}!`);
+                upgradeModal.style.display = 'none';
+                
+                // Reset form
+                e.target.reset();
+                
+                // Refresh UI
+                renderCurrentPlan();
+                renderBillingHistory();
+            });
+
+            document.getElementById('payment-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const cardNumber = document.getElementById('card-number').value;
+                const cardName = document.getElementById('card-name').value;
+                const cardExpiry = document.getElementById('card-expiry').value;
+                const cardCvv = document.getElementById('card-cvv').value;
+                const setDefault = document.getElementById('set-default').checked;
+                
+                // Determine card type
+                let cardType = 'unknown';
+                if (/^4/.test(cardNumber)) cardType = 'visa';
+                else if (/^5[1-5]/.test(cardNumber)) cardType = 'mastercard';
+                else if (/^3[47]/.test(cardNumber)) cardType = 'amex';
+                else if (/^6(?:011|5)/.test(cardNumber)) cardType = 'discover';
+                
+                // Add new payment method to database
+                addPaymentMethod({
+                    type: cardType,
+                    last4: cardNumber.slice(-4),
+                    exp: cardExpiry,
+                    default: setDefault
+                });
+                
+                // Show confirmation
+                alert('Your payment method has been added successfully!');
+                paymentModal.style.display = 'none';
+                
+                // Reset form
+                e.target.reset();
+                
+                // Refresh UI
+                renderPaymentMethods();
+            });
+        });
+
+        // Update user plan in database
+        function updateUserPlan(newPlan, billingCycle = 'monthly', cancelReason = null, otherReason = null) {
+            // Get current date and calculate next billing date
+            const today = new Date();
+            let nextBillingDate = new Date(today);
+            
+            if (newPlan === 'cancelled') {
+                // For cancellation, we just mark it in the database
+                currentUser.plan = 'cancelled';
+                currentUser.cancelReason = cancelReason;
+                if (otherReason) currentUser.otherCancelReason = otherReason;
+            } else {
+                // For plan changes, update the plan and billing date
+                currentUser.plan = newPlan;
+                
+                if (billingCycle === 'annual') {
+                    nextBillingDate.setFullYear(nextBillingDate.getFullYear() + 1);
+                } else {
+                    nextBillingDate.setMonth(nextBillingDate.getMonth() + 1);
+                }
+                
+                currentUser.billingDate = formatDate(nextBillingDate);
+                
+                // Add to billing history
+                const newInvoice = {
+                    id: currentUser.billingHistory.length + 1,
+                    date: formatDate(today),
+                    description: `${gwc_db.plans[newPlan].name} (${billingCycle})`,
+                    amount: billingCycle === 'annual' ? 
+                        Math.floor(gwc_db.plans[newPlan].price * 12 * 0.85) : // 15% discount for annual
+                        gwc_db.plans[newPlan].price,
+                    status: 'paid',
+                    invoice: `INV-${formatDate(today, 'yyyy-MM')}-${currentUser.billingHistory.length + 1}`
+                };
+                
+                currentUser.billingHistory.unshift(newInvoice);
+            }
+            
+            // In a real app, you would send this to your server here
+            console.log('Updated user plan:', currentUser);
+        }
+
+        // Add payment method to database
+        function addPaymentMethod(cardDetails) {
+            // Generate new ID
+            const newId = currentUser.paymentMethods.length > 0 ? 
+                Math.max(...currentUser.paymentMethods.map(m => m.id)) + 1 : 1;
+            
+            // If setting as default, unset any existing default
+            if (cardDetails.default) {
+                currentUser.paymentMethods.forEach(method => {
+                    method.default = false;
+                });
+            }
+            
+            // Add new method
+            currentUser.paymentMethods.push({
+                id: newId,
+                type: cardDetails.type,
+                last4: cardDetails.last4,
+                exp: cardDetails.exp,
+                default: cardDetails.default
+            });
+            
+            // In a real app, you would send this to your server here
+            console.log('Added payment method:', currentUser.paymentMethods);
+        }
+
+        // Remove payment method from database
+        function removePaymentMethod(methodId) {
+            currentUser.paymentMethods = currentUser.paymentMethods.filter(method => method.id !== methodId);
+            
+            // If we removed the default and have other methods, set the first one as default
+            if (currentUser.paymentMethods.length > 0 && 
+                !currentUser.paymentMethods.some(m => m.default)) {
+                currentUser.paymentMethods[0].default = true;
+            }
+            
+            // In a real app, you would send this to your server here
+            console.log('Removed payment method. Updated methods:', currentUser.paymentMethods);
+            
+            // Refresh UI
+            renderPaymentMethods();
+        }
+
+        // Set default payment method in database
+        function setDefaultPaymentMethod(methodId) {
+            currentUser.paymentMethods.forEach(method => {
+                method.default = method.id === methodId;
+            });
+            
+            // In a real app, you would send this to your server here
+            console.log('Updated default payment method:', currentUser.paymentMethods);
+            
+            // Refresh UI
+            renderPaymentMethods();
+        }
+
+        // Render current plan section
+        function renderCurrentPlan() {
+            if (currentUser.plan === 'cancelled') {
+                // Show cancelled plan state
+                currentPlanSection.style.background = 'linear-gradient(135deg, #6c757d 0%, #495057 100%)';
+                planNameElement.textContent = 'Cancelled Plan';
+                planPriceElement.innerHTML = '$0<span class="month">/month</span>';
+                planStatusElement.textContent = 'Cancelled • Access until ' + formatDate(new Date(currentUser.billingDate));
+                
+                // Update features list
+                planFeaturesElement.innerHTML = `
+                    <li><i class="fas fa-info-circle"></i> Your access will continue until the end of your billing period</li>
+                    ${currentUser.cancelReason ? `<li><i class="fas fa-comment"></i> Reason: ${formatCancelReason(currentUser.cancelReason, currentUser.otherCancelReason)}</li>` : ''}
+                `;
+                
+                // Update buttons
+                document.getElementById('upgrade-plan').textContent = 'Reactivate Plan';
+                document.getElementById('cancel-plan').style.display = 'none';
+            } else {
+                // Show active plan
+                const plan = gwc_db.plans[currentUser.plan];
+                currentPlanSection.style.background = `linear-gradient(135deg, ${plan.color} 0%, var(--secondary-color) 100%)`;
+                planNameElement.textContent = plan.name;
+                planPriceElement.innerHTML = `$${plan.price}<span class="month">/month</span>`;
+                
+                // Format billing date
+                const billingDate = new Date(currentUser.billingDate);
+                const formattedDate = billingDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                planStatusElement.textContent = `Active • Renews on ${formattedDate}`;
+                
+                // Update features list
+                planFeaturesElement.innerHTML = plan.features.map(feature => 
+                    `<li><i class="fas fa-check"></i> ${feature}</li>`
+                ).join('');
+                
+                // Update buttons
+                document.getElementById('upgrade-plan').textContent = 'Upgrade Plan';
+                document.getElementById('cancel-plan').style.display = 'block';
+            }
+        }
+
+        // Render billing history from database
+        function renderBillingHistory() {
+            billingTableBody.innerHTML = '';
+            
+            currentUser.billingHistory.forEach(item => {
+                const row = document.createElement('tr');
+                
+                // Format date
+                const date = new Date(item.date);
+                const formattedDate = date.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+                
+                // Status class
+                let statusClass = '';
+                if (item.status === 'paid') statusClass = 'status-paid';
+                else if (item.status === 'pending') statusClass = 'status-pending';
+                else if (item.status === 'failed') statusClass = 'status-failed';
+                
+                row.innerHTML = `
+                    <td>${formattedDate}</td>
+                    <td>${item.description}</td>
+                    <td>$${item.amount.toFixed(2)}</td>
+                    <td><span class="status ${statusClass}">${item.status}</span></td>
+                    <td><a href="#" class="invoice-link">${item.invoice}</a></td>
+                `;
+                
+                billingTableBody.appendChild(row);
+            });
+        }
+
+        // Render payment methods from database
+        function renderPaymentMethods() {
+            paymentCardsContainer.innerHTML = '';
+            
+            // Add existing cards
+            currentUser.paymentMethods.forEach(method => {
+                const card = document.createElement('div');
+                card.className = `payment-card ${method.default ? 'card-default' : ''}`;
+                
+                card.innerHTML = `
+                    <div class="card-type">
+                        <span>${method.type.toUpperCase()}</span>
+                        ${method.default ? '<span>DEFAULT</span>' : ''}
+                    </div>
+                    <div class="card-number">•••• •••• •••• ${method.last4}</div>
+                    <div class="card-expiry">Expires ${method.exp}</div>
+                    <div class="card-actions">
+                        ${!method.default ? `<button class="btn btn-sm btn-outline set-default" data-id="${method.id}">Set Default</button>` : ''}
+                        <button class="btn btn-sm btn-danger remove-card" data-id="${method.id}">Remove</button>
+                    </div>
+                `;
+                
+                paymentCardsContainer.appendChild(card);
+            });
+            
+            // Add "Add Card" button
+            const addCard = document.createElement('div');
+            addCard.className = 'payment-card add-card';
+            addCard.innerHTML = `
+                <button class="btn btn-primary" id="add-card">Add Payment Method</button>
+            `;  
+            paymentCardsContainer.appendChild(addCard);
+        }
+    </script>
+</body>
+</html>
