@@ -1,218 +1,393 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Your Name — Portfolio</title>
-  <meta name="description" content="Portfolio of Your Name — Frontend Developer / Designer" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Winston — Portfolio (Animated)</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+      integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
+      crossorigin="anonymous"
+    />
+    <style>
+      /* =============================
+         Base + Theme
+      ============================== */
+      :root {
+        --bg: #0b0f17;
+        --panel: #121826;
+        --text: #e6eefb;
+        --muted: #8aa0bf;
+        --brand: #6aa9ff;
+        --brand-2: #7cf3ff;
+        --accent: #ffd166;
+        --danger: #ff6a8b;
+        --radius: 16px;
+        --shadow: 0 10px 30px rgba(0,0,0,.35);
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        color: var(--text);
+        background: radial-gradient(1200px 800px at 80% 10%, rgba(122, 195, 255,.08), transparent 60%),
+                    radial-gradient(1000px 600px at 10% 0%, rgba(124, 243, 255,.06), transparent 60%),
+                    var(--bg);
+        overflow-x: hidden;
+      }
+      a { color: inherit; text-decoration: none; }
+      img { display: block; max-width: 100%; }
+      iframe { border: 0; width: 100%; }
 
-  <!-- Your base styles -->
-  <link rel="stylesheet" href="/css/styles.css" />
+      /* =============================
+         Motion preferences
+      ============================== */
+      @media (prefers-reduced-motion: reduce) {
+        * { animation: none !important; transition: none !important; }
+        html { scroll-behavior: auto; }
+      }
 
-  <!-- Animation pack (added) -->
-  <link rel="stylesheet" href="/css/animations.css" />
+      /* =============================
+         Navbar
+      ============================== */
+      .navbar {
+        position: sticky; top: 0; z-index: 50;
+        backdrop-filter: blur(8px);
+        background: rgba(11,15,23,.35);
+        border-bottom: 1px solid rgba(255,255,255,.06);
+      }
+      .navbar__container { max-width: 1120px; margin: 0 auto; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; }
+      #navLogo img { filter: drop-shadow(0 6px 12px rgba(0,0,0,.35)); transition: transform .5s cubic-bezier(.2,.8,.2,1); }
+      #navLogo:hover img { transform: rotate(-4deg) scale(1.04); }
 
-  <!-- Fonts/icons (optional) -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+      .navbar__menu { display: flex; gap: 14px; align-items: center; list-style: none; margin: 0; padding: 0; }
+      .navbar__links, .button {
+        padding: 10px 14px; border-radius: calc(var(--radius) - 10px);
+        display: inline-flex; align-items: center; gap: 8px; position: relative;
+      }
+      .navbar__links::after {
+        content: ""; position: absolute; left: 12px; right: 12px; bottom: 6px; height: 2px;
+        background: linear-gradient(90deg, transparent, var(--brand), transparent);
+        transform: scaleX(0); transform-origin: center; transition: transform .4s ease;
+      }
+      .navbar__links:hover::after { transform: scaleX(1); }
+      .button { background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #051225; font-weight: 600; box-shadow: var(--shadow); }
+      .button:hover { filter: brightness(1.1); transform: translateY(-1px); }
 
-  <style>
-    /* Minimal layout cosmetics so the demo looks decent — keep or remove */
-    :root { --bg: #0b0d10; --muted: #a8b3cf; --text: #e6edf3; --card: #131720; --accent: #7c9aff; }
-    * { box-sizing: border-box }
-    body { margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color: var(--text); background: radial-gradient(1200px 800px at 80% -10%, #1a2030 0%, transparent 60%), var(--bg); }
-    a { color: inherit }
-    .container { width: min(1100px, 90vw); margin: 0 auto; }
-    header.header { position: sticky; top: 0; z-index: 50; backdrop-filter: saturate(180%) blur(12px); background: color-mix(in oklab, var(--bg) 70%, transparent); border-bottom: 1px solid #1d2330; }
-    .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
-    .brand { font-weight: 800; letter-spacing: 0.3px; }
-    nav a { margin-left: 18px; color: var(--muted); }
-    .hero { padding: 96px 0 64px; }
-    .hero h1 { font-size: clamp(32px, 5vw, 56px); line-height: 1.05; margin: 0 0 14px; }
-    .hero p { font-size: 1.15rem; color: var(--muted); max-width: 60ch; }
-    .btn { background: var(--accent); color: #0a0d14; font-weight: 700; }
-    section { padding: 72px 0; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
-    .card { background: var(--card); border: 1px solid #1d2330; border-radius: 16px; padding: 18px; }
-    .card h3 { margin: 12px 0 6px }
-    .skills { display: flex; flex-wrap: wrap; gap: 12px; }
-    .skill { background: #121521; border: 1px solid #1d2330; padding: 8px 12px; border-radius: 999px; color: var(--muted); }
-    footer { padding: 48px 0 72px; color: var(--muted); border-top: 1px solid #1d2330; }
-    .img-zoom img { aspect-ratio: 16/10; object-fit: cover; }
-  </style>
-</head>
-<body class="page-fade-enter page-fade-enter-active">
-  <!-- ===== HEADER ===== -->
-  <header class="header">
-    <div class="container header-inner">
-      <div class="brand reveal slide-right" data-anim-once="true">Your Name</div>
-      <nav>
-        <a class="nav-link" href="#work" aria-current="page">Work</a>
-        <a class="nav-link" href="#about">About</a>
-        <a class="nav-link" href="#contact">Contact</a>
-        <!-- Add more links as needed -->
-      </nav>
-    </div>
-  </header>
+      /* Mobile nav */
+      .navbar__toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+      .bar { width: 26px; height: 2px; background: var(--text); transition: transform .4s, opacity .3s; }
+      @media (max-width: 820px) {
+        .navbar__toggle { display: flex; }
+        .navbar__menu { position: fixed; inset: 64px 14px auto; flex-direction: column; background: var(--panel); border: 1px solid rgba(255,255,255,.06); border-radius: var(--radius); padding: 12px; box-shadow: var(--shadow); transform: translateY(-20px) scale(.98); opacity: 0; pointer-events: none; transition: .35s ease; }
+        .navbar__menu.is-open { transform: none; opacity: 1; pointer-events: auto; }
+      }
 
-  <!-- ===== HERO ===== -->
-  <section class="hero container">
-    <h1 class="reveal slide-up" data-anim-once="true" style="transition-duration:700ms">
-      Hi, I’m Your Name — Frontend Developer
-    </h1>
-    <p class="reveal slide-up" data-anim-once="true" data-anim-delay="120">
-      I craft fast, accessible interfaces and rich web experiences.
-    </p>
-    <div class="reveal fade" data-anim-once="true" data-anim-delay="220">
-      <a href="#work" class="btn">See my work</a>
-    </div>
-  </section>
+      /* Toggle animation */
+      .navbar__toggle.active .bar:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+      .navbar__toggle.active .bar:nth-child(2){ opacity: 0; }
+      .navbar__toggle.active .bar:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
 
-  <!-- ===== WORK / PROJECTS ===== -->
-  <section id="work" class="container">
-    <h2 class="reveal slide-up" data-anim-once="true">Selected Projects</h2>
+      /* =============================
+         Hero
+      ============================== */
+      .hero { position: relative; min-height: 78vh; display: grid; place-items: center; overflow: hidden; }
+      .hero::before{
+        content:""; position:absolute; inset:-40%; background: conic-gradient(from 0deg, rgba(106,169,255,.1), rgba(124,243,255,.06), transparent 60%);
+        filter: blur(40px); animation: spin 22s linear infinite;
+      }
+      @keyframes spin { to { transform: rotate(360deg); } }
 
-    <!-- Staggered grid: each child will fade/slide in with delays -->
-    <div class="grid stagger" data-stagger-step="90" data-anim-once="true">
-      <!-- Project 1 -->
-      <article class="card">
-        <div class="img-zoom">
-          <img src="images/project-1.jpg" alt="Project 1 thumbnail" />
+      .hero__container { text-align: center; padding: 80px 20px 40px; }
+      .hero__heading { font-size: clamp(34px, 6vw, 64px); line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 16px; }
+      .hero__heading span { background: linear-gradient(135deg, var(--brand), var(--brand-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      .hero__description { color: var(--muted); font-size: clamp(16px, 2.4vw, 20px); margin-top: 28px; opacity: .9; }
+
+      .main__btn { position: relative; display: inline-grid; place-content: center; padding: 14px 22px; border: 0; border-radius: 14px; font-weight: 700; letter-spacing: .3px; cursor: pointer; background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #08131f; box-shadow: 0 12px 24px rgba(106,169,255,.25); transition: transform .2s ease, filter .2s ease; }
+      .main__btn:hover { transform: translateY(-2px); filter: brightness(1.08); }
+      .main__btn a { color: inherit; }
+
+      /* Button pulse on load */
+      .btn-pulse { animation: pulse 2.2s ease 1.2s 2; }
+      @keyframes pulse { 0%,100%{ box-shadow: 0 0 0 0 rgba(106,169,255,.0); } 50%{ box-shadow: 0 0 0 18px rgba(106,169,255,.12);} }
+
+      /* =============================
+         Sections
+      ============================== */
+      section, .MyCV, .Projects, .DesignWork, .Feedback { padding: 64px 20px; }
+      .section-inner { max-width: 1120px; margin: 0 auto; }
+
+      /* Cards / grids */
+      .services__wrapper { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; max-width: 1120px; margin: 24px auto 0; }
+      @media (max-width: 980px){ .services__wrapper{ grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+      @media (max-width: 640px){ .services__wrapper{ grid-template-columns: 1fr; } }
+
+      .services__card { background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); border: 1px solid rgba(255,255,255,.08); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); transform: translateY(6px); transition: transform .25s ease, box-shadow .25s ease; position: relative; overflow: hidden; }
+      .services__card::after { content:""; position:absolute; inset:-40%; background: radial-gradient(600px 200px at var(--x,50%) var(--y,0%), rgba(255,255,255,.12), transparent 60%); opacity: 0; transition: opacity .25s; }
+      .services__card:hover { transform: translateY(-2px); box-shadow: 0 16px 36px rgba(0,0,0,.45); }
+      .services__card:hover::after { opacity: 1; }
+      .services__card h8 { display:block; font-weight:800; letter-spacing:.3px; color: var(--accent); margin: 2px 0 10px; }
+      .services__btn { margin-top: 12px; }
+      .services__btn button { background: #17233a; color: var(--text); border: 1px solid rgba(255,255,255,.1); border-radius: 12px; padding: 10px 14px; cursor: pointer; transition: transform .2s ease, background .2s ease; }
+      .services__btn button:hover { transform: translateY(-1px); background: #1d2b47; }
+
+      /* DesignWork header */
+      .DesignWork h9, .Projects h1 { display:block; text-align:center; font-size: clamp(22px, 4vw, 34px); margin: 0; }
+      .DesignWork h9 { color: var(--accent); }
+      .Projects h1 { color: #fff; }
+
+      /* CV panel */
+      .main__container { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr .8fr; gap: 22px; }
+      @media (max-width: 980px){ .main__container{ grid-template-columns: 1fr; } }
+      .main__img--card { border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(255,255,255,.08); background: var(--panel); box-shadow: var(--shadow); }
+      .main__content h5 { font-size: 18px; color: var(--muted); font-weight: 600; }
+
+      /* Contact form */
+      .contact-container { display: grid; grid-template-columns: 1fr; gap: 16px; }
+      .contact-left-title h9 { display:block; font-size: 26px; margin: 0 0 4px; color: var(--brand-2); }
+      .contact-left-title hr { border: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--brand-2), transparent); }
+      .contact-inputs { width: 100%; padding: 12px 14px; border-radius: 12px; background: #0e1524; color: var(--text); border: 1px solid rgba(255,255,255,.08); outline: none; transition: box-shadow .25s ease, transform .2s ease; }
+      .contact-inputs:focus { box-shadow: 0 8px 24px rgba(124,243,255,.18); transform: translateY(-1px); }
+      .contact-left button { background: linear-gradient(135deg, var(--brand), var(--brand-2)); border: 0; border-radius: 14px; padding: 12px 16px; font-weight: 700; cursor: pointer; color: #06121e; box-shadow: var(--shadow); }
+
+      /* =============================
+         On‑scroll animation system
+      ============================== */
+      [data-animate] { opacity: 0; transform: translateY(16px) scale(.98); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
+      .in-view { opacity: 1; transform: none; }
+      /* Variants */
+      [data-animate="fade-up"] { transform: translateY(18px); }
+      [data-animate="fade-right"] { transform: translateX(-24px); }
+      [data-animate="fade-left"] { transform: translateX(24px); }
+      [data-animate="zoom-in"] { transform: scale(.9); }
+      [data-animate][data-delay] { transition-delay: var(--delay, 0ms); }
+
+      /* Stagger utility for grids */
+      .stagger > * { --delay-step: 80ms; }
+      .stagger > * { --delay: calc(var(--i, 0) * var(--delay-step)); }
+
+      /* Floating scroll-to-top */
+      .to-top { position: fixed; right: 18px; bottom: 18px; width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,.1); background: #121a2c; display: grid; place-items: center; box-shadow: var(--shadow); opacity: 0; transform: translateY(14px); pointer-events: none; transition: .3s ease; }
+      .to-top.visible { opacity: 1; transform: none; pointer-events: auto; }
+
+      /* Footer-ish breathing line */
+      .breathing { height: 1px; margin: 48px auto 0; max-width: 1120px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent); filter: blur(.2px); animation: breathe 3.2s ease-in-out infinite; opacity: .5; }
+      @keyframes breathe { 50% { opacity: .9; } }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar Section -->
+    <nav class="navbar" data-animate="fade-down">
+      <div class="navbar__container">
+        <a href="#Home" id="navLogo" aria-label="Go to Home"><img src="/WorkImages/Untitled-3.png" alt="Winston logo" height="50"></a>
+        <div class="navbar__toggle" id="mobile-menu" aria-label="Open menu" aria-expanded="false" role="button" tabindex="0">
+          <span class="bar"></span> <span class="bar"></span> <span class="bar"></span>
         </div>
-        <h3 class="reveal slide-up">Fintech Dashboard</h3>
-        <p class="reveal fade" data-anim-delay="60">
-          Real-time analytics with custom charting and dark-mode theming.
-        </p>
-        <p class="reveal fade" data-anim-delay="120">
-          <a href="#" class="nav-link">Case study →</a>
-        </p>
-      </article>
+        <ul class="navbar__menu" id="navMenu">
+          <li class="navbar__item"><a href="#Home" class="navbar__links">Home</a></li>
+          <li class="navbar__item"><a href="#MyCV" class="navbar__links">CV</a></li>
+          <li class="navbar__item"><a href="#Projects" class="navbar__links">Projects</a></li>
+          <li class="navbar__item"><a href="#DesignWork" class="navbar__links">Design Work</a></li>
+          <li class="navbar__btn"><a href="#Feedback" class="button" id="signup">Feedback</a></li>
+        </ul>
+      </div>
+    </nav>
 
-      <!-- Project 2 -->
-      <article class="card">
-        <div class="img-zoom">
-          <img src="images/project-2.jpg" alt="Project 2 thumbnail" />
+    <!-- Hero Section -->
+    <header class="hero" id="Home">
+      <div class="hero__container" data-animate="zoom-in">
+        <h1 class="hero__heading" data-animate="fade-up" data-delay style="--delay:140ms">Welcome to my <span>Portfolio</span></h1>
+        <button class="main__btn btn-pulse" data-animate="fade-up" style="--delay:320ms"><a href="#MyCV">Explore</a></button>
+        <p class="hero__description" data-animate="fade-up" style="--delay:520ms">Junior Software Developer</p>
+      </div>
+    </header>
+
+    <!-- MyCV Section -->
+    <section class="MyCV" id="MyCV">
+      <div class="main__container">
+        <div class="main__img--container" data-animate="fade-right">
+          <div class="main__img--card">
+            <iframe src="/MyCV.pdf" height="700"></iframe>
+          </div>
         </div>
-        <h3 class="reveal slide-up">E-commerce Redesign</h3>
-        <p class="reveal fade" data-anim-delay="60">
-          Conversion-focused UX revamp with performance optimisations.
-        </p>
-        <p class="reveal fade" data-anim-delay="120">
-          <a href="#" class="nav-link">Case study →</a>
-        </p>
-      </article>
-
-      <!-- Project 3 -->
-      <article class="card">
-        <div class="img-zoom">
-          <img src="images/project-3.jpg" alt="Project 3 thumbnail" />
+        <div class="main__content" data-animate="fade-left">
+          <button class="main__btn"><a href="/MyCV.pdf">View CV</a></button>
+          <h5>Explore my work in C#, HTML, CSS, and JavaScript as I launch my career as a Software Developer</h5>
         </div>
-        <h3 class="reveal slide-up">Marketing Site</h3>
-        <p class="reveal fade" data-anim-delay="60">
-          Headless CMS, animated hero, and custom components.
-        </p>
-        <p class="reveal fade" data-anim-delay="120">
-          <a href="#" class="nav-link">Live site →</a>
-        </p>
-      </article>
+      </div>
+      <div class="breathing" aria-hidden="true"></div>
+    </section>
 
-      <!-- Copy/expand more cards as needed -->
-    </div>
-  </section>
+    <!-- Projects Section -->
+    <section class="Projects" id="Projects">
+      <div class="section-inner">
+        <h1>C#, HTML, CSS, and JavaScript</h1>
+        <div class="services__wrapper stagger" data-animate="fade-up">
+          <div class="services__card" style="--i:0">
+            <h8>Php, Html, JS & CSS</h8>
+            <img src="/Images/glow.png" alt="Glow with Chlo website" height="200" loading="lazy">
+            <div class="services__btn"><a href="https://glow-with-chlo.com/index.html" target="_blank" rel="noreferrer noopener"><button>Visit Website</button></a></div>
+          </div>
+          <div class="services__card" style="--i:1">
+            <h8>C#</h8>
+            <img src="/WorkImages/SpanishQuizphoto.jpg" alt="Spanish quiz app" height="200" loading="lazy">
+            <div class="services__btn"><a href="/WorkImages/SpanishQuizVideo.mp4"><button>Watch Video</button></a></div>
+          </div>
+          <div class="services__card" style="--i:2">
+            <h8>C# & Unity</h8>
+            <img src="/WorkImages/recycleGame.png" alt="Recycle game" height="200" loading="lazy">
+            <div class="services__btn"><a href="/WorkImages/EcorunnergameplayNew.mp4"><button>Watch Video</button></a></div>
+          </div>
+          <div class="services__card" style="--i:3">
+            <h8>C#</h8>
+            <img src="/WorkImages/Todolist.png" alt="To-do list app" height="200" loading="lazy">
+            <div class="services__btn"><a href="/ToDoListVideo.mp4"><button>Watch Video</button></a></div>
+          </div>
+          <div class="services__card" style="--i:4">
+            <h8>HTML, CSS & JavaScript</h8>
+            <img src="/WorkImages/QuizSite.png" alt="Quiz website" height="200" loading="lazy">
+            <div class="services__btn"><a href="/QuizSite/Quiz1.html"><button>Visit</button></a></div>
+          </div>
+          <div class="services__card" style="--i:5">
+            <h8>HTML & CSS</h8>
+            <img src="/Images/Doc-Website.jpg" alt="Documentary website" height="200" loading="lazy">
+            <div class="services__btn"><a href="/Documentary/index.html"><button>Visit</button></a></div>
+          </div>
+        </div>
+      </div>
+      <div class="breathing" aria-hidden="true"></div>
+    </section>
 
-  <!-- ===== ABOUT ===== -->
-  <section id="about" class="container reveal scale" data-anim-threshold="0.25" data-anim-once="true">
-    <h2>About</h2>
-    <p>
-      I specialise in accessibility-first animation and performance-driven UI. I enjoy turning complex
-      problems into delightful, intuitive interfaces.
-    </p>
+    <!-- Design Work Section -->
+    <section class="DesignWork" id="DesignWork">
+      <h9>Design Work</h9>
+      <div class="services__wrapper stagger" data-animate="fade-up">
+        <div class="services__card" style="--i:0">
+          <img src="/WorkImages/EducateFXLogo1.png" alt="EducateFX logo" height="250" loading="lazy">
+          <div class="services__btn"><a href="/WorkImages/EducateFXLogo1.png"><button>View</button></a></div>
+        </div>
+        <div class="services__card" style="--i:1">
+          <img src="/WorkImages/logo1.png" alt="Logo 1" height="250" loading="lazy">
+          <div class="services__btn"><a href="/WorkImages/logo1.png"><button>View</button></a></div>
+        </div>
+        <div class="services__card" style="--i:2">
+          <img src="/WorkImages/WMLogo.png" alt="WM logo" height="250" loading="lazy">
+          <div class="services__btn"><a href="/WorkImages/WMlogo.png"><button>View</button></a></div>
+        </div>
+        <div class="services__card" style="--i:3">
+          <img src="/WorkImages/WMlogo2.png" alt="WM logo 2" height="250" loading="lazy">
+          <div class="services__btn"><a href="/WorkImages/WMlogo2.png"><button>View</button></a></div>
+        </div>
+        <div class="services__card" style="--i:4">
+          <img src="/WorkImages/Untitled-3.png" alt="Untitled-3" height="250" loading="lazy">
+          <div class="services__btn"><a href="/WorkImages/Untitled-3.png"><button>View</button></a></div>
+        </div>
+        <div class="services__card" style="--i:5">
+          <img src="/WorkImages/PPPLogo.png" alt="PPP Logo" height="250" loading="lazy">
+          <div class="services__btn"><a href="/WorkImages/PPPLogo.png"><button>View</button></a></div>
+        </div>
+        <div class="services__card" style="--i:6">
+          <img src="/WorkImages/whitepng.png" alt="White png" height="250" loading="lazy">
+          <div class="services__btn"><a href="/WorkImages/whitepng.png"><button>View</button></a></div>
+        </div>
+        <div class="services__card" style="--i:7">
+          <img src="/WorkImages/dmf.png" alt="DMF" height="250" loading="lazy">
+          <div class="services__btn"><a href="/WorkImages/dmf.png"><button>View</button></a></div>
+        </div>
+      </div>
+      <div class="breathing" aria-hidden="true"></div>
+    </section>
 
-    <!-- Skills as chips with subtle entrance -->
-    <div class="skills reveal fade" data-anim-delay="100">
-      <span class="skill">TypeScript</span>
-      <span class="skill">React</span>
-      <span class="skill">Next.js</span>
-      <span class="skill">Node</span>
-      <span class="skill">GSAP</span>
-      <span class="skill">Figma</span>
-      <!-- Add yours -->
-    </div>
-  </section>
+    <!-- Feedback Section -->
+    <section class="Feedback" id="Feedback">
+      <div class="main__container">
+        <div class="main__img--container">
+          <div class="contact-container" data-animate="fade-up">
+            <form action="https://api.web3forms.com/submit" method="POST" class="contact-left">
+              <div class="contact-left-title">
+                <h9>Get in touch</h9>
+                <hr>
+              </div>
+              <input type="hidden" name="access_key" value="6501dcba-c393-449f-9ecb-28475d858f92">
+              <input type="text" name="name" placeholder="Your Name or Your Company" class="contact-inputs" required>
+              <input type="email" name="email" placeholder="Your Email Address" class="contact-inputs" required>
+              <textarea name="message" placeholder="Your Message" class="contact-inputs" rows="6" required></textarea>
+              <button type="submit">Submit</button>
+              <h4 style="color: var(--muted); margin-top: 10px">I aim to reply to all messages within 48 hours. Thank you for your feedback!</h4>
+            </form>
+            <div class="contact-right"></div>
+          </div>
+        </div>
+      </div>
+      <div class="breathing" aria-hidden="true"></div>
+    </section>
 
-  <!-- ===== TESTIMONIALS (optional) ===== -->
-  <section class="container">
-    <h2 class="reveal slide-up" data-anim-once="true">What clients say</h2>
-    <div class="grid stagger" data-stagger-step="110" data-anim-once="true">
-      <blockquote class="card">
-        <p class="reveal fade">
-          “A rare mix of speed, craft, and UX intuition. Our KPIs jumped within a week of launch.”
-        </p>
-        <footer class="reveal fade" data-anim-delay="80">— Jane Smith, Product Lead</footer>
-      </blockquote>
-      <blockquote class="card">
-        <p class="reveal fade">
-          “Pixel-perfect implementation and great communication throughout the project.”
-        </p>
-        <footer class="reveal fade" data-anim-delay="80">— Rahul Mehta, CTO</footer>
-      </blockquote>
-    </div>
-  </section>
+    <a href="#Home" class="to-top" id="toTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
 
-  <!-- ===== CONTACT ===== -->
-  <section id="contact" class="container">
-    <h2 class="reveal slide-up" data-anim-once="true">Get in touch</h2>
-    <p class="reveal fade" data-anim-delay="80">
-      Email me at <a class="nav-link" href="mailto:you@example.com">you@example.com</a> or find me on
-      <a class="nav-link" href="#" rel="noopener">LinkedIn</a>.
-    </p>
+    <script>
+      // =============================
+      // IntersectionObserver animations
+      // =============================
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            // Once animated, unobserve to prevent repeated triggers
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
 
-    <!-- Example contact form (animated fields) -->
-    <form class="grid" style="grid-template-columns:1fr 1fr; gap:14px; max-width:720px">
-      <input class="card reveal slide-up" data-anim-delay="0" type="text" name="name" placeholder="Name" />
-      <input class="card reveal slide-up" data-anim-delay="80" type="email" name="email" placeholder="Email" />
-      <textarea class="card reveal slide-up" data-anim-delay="120" name="message" rows="5" placeholder="Message" style="grid-column:1/-1"></textarea>
-      <button class="btn reveal fade" data-anim-delay="200" type="submit">Send</button>
-    </form>
-  </section>
+      document.querySelectorAll('[data-animate]').forEach((el) => observer.observe(el));
 
-  <!-- ===== FOOTER ===== -->
-  <footer>
-    <div class="container reveal fade" data-anim-once="true">
-      <p>© <span id="year"></span> Your Name. All rights reserved.</p>
-    </div>
-  </footer>
+      // =============================
+      // Mobile menu toggle with animation
+      // =============================
+      const toggle = document.getElementById('mobile-menu');
+      const menu = document.getElementById('navMenu');
+      toggle?.addEventListener('click', () => {
+        const open = menu.classList.toggle('is-open');
+        toggle.classList.toggle('active', open);
+        toggle.setAttribute('aria-expanded', String(open));
+      });
+      toggle?.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle.click(); }});
 
-  <!-- Your scripts -->
-  <script>
-    // sets current year (nice touch)
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+      // Close mobile menu when clicking a link
+      menu?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+        if (menu.classList.contains('is-open')) { menu.classList.remove('is-open'); toggle.classList.remove('active'); toggle.setAttribute('aria-expanded', 'false'); }
+      }));
 
-  <!-- Animation runtime (added) -->
-  <script defer src="/js/animations.js"></script>
+      // =============================
+      // Card spotlight hover following cursor
+      // =============================
+      document.querySelectorAll('.services__card').forEach((card) => {
+        card.addEventListener('pointermove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left; const y = e.clientY - rect.top;
+          card.style.setProperty('--x', x + 'px');
+          card.style.setProperty('--y', y + 'px');
+        });
+      });
 
-  <!-- Optional: page transition helper (added) -->
-  <script>
-    // Fade-in on load is handled via classes on <body>; if you implement route changes,
-    // you can call this helper to fade out before navigating.
-    function fadeOutThenNavigate(url) {
-      document.body.classList.remove('page-fade-enter', 'page-fade-enter-active');
-      document.body.classList.add('page-fade-exit');
-      requestAnimationFrame(() => document.body.classList.add('page-fade-exit-active'));
-      setTimeout(() => { window.location.href = url; }, 260);
-    }
+      // =============================
+      // Scroll-to-top reveal
+      // =============================
+      const toTop = document.getElementById('toTop');
+      const showTop = () => {
+        const scrolled = window.scrollY || document.documentElement.scrollTop;
+        toTop.classList.toggle('visible', scrolled > 600);
+      };
+      window.addEventListener('scroll', showTop, { passive: true });
+      showTop();
 
-    // Trigger enter animation on pageshow
-    window.addEventListener('pageshow', () => {
-      document.body.classList.add('page-fade-enter');
-      requestAnimationFrame(() => document.body.classList.add('page-fade-enter-active'));
-    });
-  </script>
-
-  <!-- ====== WHERE TO MERGE YOUR ORIGINAL CONTENT ======
-       Replace the placeholder text, images, and links above with your real sections.
-       If you share your original index.html, I’ll slot these classes/attributes into it
-       exactly and return your file 1:1 with animations. -->
-</body>
+      // =============================
+      // Stagger support: add index CSS var (--i)
+      // =============================
+      document.querySelectorAll('.stagger').forEach((grid) => {
+        [...grid.children].forEach((child, i) => child.style.setProperty('--i', i));
+      });
+    </script>
+  </body>
 </html>
