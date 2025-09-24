@@ -1,197 +1,218 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Winstons Portfolio</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
-      integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
-      crossorigin="anonymous"
-    />
-  </head>
-  <body>
-    <!-- Navbar Section -->
-    <nav class="navbar">
-      <div class="navbar__container">
-        <a href="#Home" id="navLogo"><img src="/WorkImages/Untitled-3.png" height="50"></a>
-       
-        <div class="navbar__toggle" id="mobile-menu">
-          <span class="bar"></span> <span class="bar"></span>
-          <span class="bar"></span>
-        </div>
-        <ul class="navbar__menu">
-          <li class="navbar__item">
-            <a href="#Home" class="navbar__links">Home</a>
-          </li>
-          <li class="navbar__item">
-            <a href="#MyCV" class="navbar__links">CV</a>
-            <li class="navbar__item">
-              <a href="#Projects" class="navbar__links"> Projects</a>
-          </li>
-          <li class="navbar__item">
-            <a href="#DesignWork" class="navbar__links">Design Work</a>
-          </li>
-          <li class="navbar__btn">
-            <a href="#Feedback" class="button" id="signup">Feedback</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Name — Portfolio</title>
+  <meta name="description" content="Portfolio of Your Name — Frontend Developer / Designer" />
 
-    <!-- Hero Section -->
-    <div class="hero" id="Home">
-      <div class="hero__container">
-        <h1 class="hero__heading">Welcome to my <span>Portfolio</span></h1>
-<button class="main__btn"><a href="#MyCV">Explore</a></button>
-        <br>
-        <br>
-        <br>
-        <br><br><br>
-        <p class="hero__description">Junior Software Developer</p>
-        
-      </div>
+  <!-- Your base styles -->
+  <link rel="stylesheet" href="/css/styles.css" />
+
+  <!-- Animation pack (added) -->
+  <link rel="stylesheet" href="/css/animations.css" />
+
+  <!-- Fonts/icons (optional) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* Minimal layout cosmetics so the demo looks decent — keep or remove */
+    :root { --bg: #0b0d10; --muted: #a8b3cf; --text: #e6edf3; --card: #131720; --accent: #7c9aff; }
+    * { box-sizing: border-box }
+    body { margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color: var(--text); background: radial-gradient(1200px 800px at 80% -10%, #1a2030 0%, transparent 60%), var(--bg); }
+    a { color: inherit }
+    .container { width: min(1100px, 90vw); margin: 0 auto; }
+    header.header { position: sticky; top: 0; z-index: 50; backdrop-filter: saturate(180%) blur(12px); background: color-mix(in oklab, var(--bg) 70%, transparent); border-bottom: 1px solid #1d2330; }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    .brand { font-weight: 800; letter-spacing: 0.3px; }
+    nav a { margin-left: 18px; color: var(--muted); }
+    .hero { padding: 96px 0 64px; }
+    .hero h1 { font-size: clamp(32px, 5vw, 56px); line-height: 1.05; margin: 0 0 14px; }
+    .hero p { font-size: 1.15rem; color: var(--muted); max-width: 60ch; }
+    .btn { background: var(--accent); color: #0a0d14; font-weight: 700; }
+    section { padding: 72px 0; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
+    .card { background: var(--card); border: 1px solid #1d2330; border-radius: 16px; padding: 18px; }
+    .card h3 { margin: 12px 0 6px }
+    .skills { display: flex; flex-wrap: wrap; gap: 12px; }
+    .skill { background: #121521; border: 1px solid #1d2330; padding: 8px 12px; border-radius: 999px; color: var(--muted); }
+    footer { padding: 48px 0 72px; color: var(--muted); border-top: 1px solid #1d2330; }
+    .img-zoom img { aspect-ratio: 16/10; object-fit: cover; }
+  </style>
+</head>
+<body class="page-fade-enter page-fade-enter-active">
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="container header-inner">
+      <div class="brand reveal slide-right" data-anim-once="true">Your Name</div>
+      <nav>
+        <a class="nav-link" href="#work" aria-current="page">Work</a>
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#contact">Contact</a>
+        <!-- Add more links as needed -->
+      </nav>
     </div>
+  </header>
 
-    <!-- MyCV Section -->
-    <div class="MyCV" id="MyCV">
-      <div class="main__container">
-        <div class="main__img--container">
-          <div class="main__img--card"><iframe src="/MyCV.pdf" height="700vh"> </iframe></div>
-        </div>
-        
-        <div class="main__content" ><button class="main__btn"><a href="/MyCV.pdf">View CV</a></button>
-          <br><br> <br> 
-          
-           <br> <br> 
-           <br>            
-          
-           <br>
-          <h5>Explore my work in C#, HTML, CSS, and JavaScript as I launch my career as a Software Developer</h5>
-          <br>
-          
-        </div>
-      </div>
+  <!-- ===== HERO ===== -->
+  <section class="hero container">
+    <h1 class="reveal slide-up" data-anim-once="true" style="transition-duration:700ms">
+      Hi, I’m Your Name — Frontend Developer
+    </h1>
+    <p class="reveal slide-up" data-anim-once="true" data-anim-delay="120">
+      I craft fast, accessible interfaces and rich web experiences.
+    </p>
+    <div class="reveal fade" data-anim-once="true" data-anim-delay="220">
+      <a href="#work" class="btn">See my work</a>
     </div>
+  </section>
 
-    <!-- Projects Section -->
-   
-    <div class="Projects" id="Projects">
-      <h1 style="color: white;">C#, HTML, CSS, and Javascript </h1>
-      <div class="services__wrapper">
- <div class="services__card">
-          <h8> Php, Html, JS & CSS</h8>
-          <img src="/Images/glow.png" style="height: 200px;">
-          <div class="services__btn"><a href="https://glow-with-chlo.com/index.html"><button>Visit Website</button></a></div>
+  <!-- ===== WORK / PROJECTS ===== -->
+  <section id="work" class="container">
+    <h2 class="reveal slide-up" data-anim-once="true">Selected Projects</h2>
+
+    <!-- Staggered grid: each child will fade/slide in with delays -->
+    <div class="grid stagger" data-stagger-step="90" data-anim-once="true">
+      <!-- Project 1 -->
+      <article class="card">
+        <div class="img-zoom">
+          <img src="images/project-1.jpg" alt="Project 1 thumbnail" />
         </div>
-        
-         <div class="services__card">
-          <h8> C#</h8>
-          <img src="/WorkImages/SpanishQuizphoto.jpg" style="height: 200px;">
-          <div class="services__btn"><a href="/WorkImages/SpanishQuizVideo.mp4"><button>Watch Video</button></a></div>
-        </div>   
-        <div class="services__card">
-          <h8> C# & Unity</h8>
-          <img src="/WorkImages/recycleGame.png" height="200">
-          <div class="services__btn"><a href="/WorkImages/EcorunnergameplayNew.mp4"><button>Watch Video</button></a></div>
+        <h3 class="reveal slide-up">Fintech Dashboard</h3>
+        <p class="reveal fade" data-anim-delay="60">
+          Real-time analytics with custom charting and dark-mode theming.
+        </p>
+        <p class="reveal fade" data-anim-delay="120">
+          <a href="#" class="nav-link">Case study →</a>
+        </p>
+      </article>
+
+      <!-- Project 2 -->
+      <article class="card">
+        <div class="img-zoom">
+          <img src="images/project-2.jpg" alt="Project 2 thumbnail" />
         </div>
-        <div class="services__card">
-          <h8> C#</h8>
-          <img src="/WorkImages/Todolist.png" style="height: 200px;">
-          <div class="services__btn"><a href="/ToDoListVideo.mp4"><button>Watch Video</button></a></div>
+        <h3 class="reveal slide-up">E-commerce Redesign</h3>
+        <p class="reveal fade" data-anim-delay="60">
+          Conversion-focused UX revamp with performance optimisations.
+        </p>
+        <p class="reveal fade" data-anim-delay="120">
+          <a href="#" class="nav-link">Case study →</a>
+        </p>
+      </article>
+
+      <!-- Project 3 -->
+      <article class="card">
+        <div class="img-zoom">
+          <img src="images/project-3.jpg" alt="Project 3 thumbnail" />
         </div>
-        <div class="services__card">
-          <h8> HTML, CSS & Javascript</h8>
-          <img src="/WorkImages/QuizSite.png" height="200">
-          <div class="services__btn"><a href="/QuizSite/Quiz1.html"><button>Visit</button></a></div>
-        </div>
-        <div class="services__card">
-          <h8>HTML & CSS</h8>
-          <img src="/Images/Doc-Website.jpg" height="200px">
-          <div class="services__btn"><a href="/Documentary/index.html"><button>Visit</button></a></div>
-        </div>
-       
-     
-       
-      </div>
+        <h3 class="reveal slide-up">Marketing Site</h3>
+        <p class="reveal fade" data-anim-delay="60">
+          Headless CMS, animated hero, and custom components.
+        </p>
+        <p class="reveal fade" data-anim-delay="120">
+          <a href="#" class="nav-link">Live site →</a>
+        </p>
+      </article>
+
+      <!-- Copy/expand more cards as needed -->
     </div>
+  </section>
 
-    <!-- Services Section -->
-    <div class="DesignWork" id="DesignWork">
-      <h9>Design Work</h9>
-      <div class="services__wrapper">
-        <div class="services__card">
-          <img src="/WorkImages/EducateFXLogo1.png" height="250">
-          <div class="services__btn"><a href="/WorkImages/EducateFXLogo1.png"><button>View</button></a></div>
-        </div>
-        
-        <div class="services__card">
-          <img src="/WorkImages/logo1.png"height="250">
-          <div class="services__btn"><a href="/WorkImages//logo1.png"><button>View</button></a></div>
-        </div>
-        <div class="services__card">
-          <img src="/WorkImages/WMLogo.png"height="250">
-          <div class="services__btn"><a href="/WorkImages/WMlogo.png" ><button>View</button></a></div>
-        </div>
-        <div class="services__card">
-          <img src="/WorkImages/WMlogo2.png" height="250">
-          <div class="services__btn"><a href="/WorkImages/WMlogo2.png"><button>View</button></a></div>
-        </div>
-        <div class="services__card">
-          <img src="/WorkImages/Untitled-3.png" height="250">
-          <div class="services__btn"><a href="/WorkImages/Untitled-3.png" ><button>View</button></a></div>
-        </div>
-        <div class="services__card">
-          <img src="/WorkImages/PPPLogo.png"height="250">
-          <div class="services__btn"><a href="/WorkImages/PPPLogo.png" ><button>View</button></a></div>
-        </div>
-        <div class="services__card">
-          <img src="/WorkImages/whitepng.png"height="250">
-          <div class="services__btn"><a href="/WorkImages//whitepng.png" ><button>View</button></a></div>
-        </div>
-        <div class="services__card">
-          <img src="/WorkImages/dmf.png"height="250">
-          <div class="services__btn"><a href="/WorkImages/dmf.png" ><button>View</button></a></div>
-        </div>
-       
-        
-      </div>
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="container reveal scale" data-anim-threshold="0.25" data-anim-once="true">
+    <h2>About</h2>
+    <p>
+      I specialise in accessibility-first animation and performance-driven UI. I enjoy turning complex
+      problems into delightful, intuitive interfaces.
+    </p>
+
+    <!-- Skills as chips with subtle entrance -->
+    <div class="skills reveal fade" data-anim-delay="100">
+      <span class="skill">TypeScript</span>
+      <span class="skill">React</span>
+      <span class="skill">Next.js</span>
+      <span class="skill">Node</span>
+      <span class="skill">GSAP</span>
+      <span class="skill">Figma</span>
+      <!-- Add yours -->
     </div>
+  </section>
 
- <!--sECTION1-->
-
-<div class="Feedback" id="Feedback">
-  <div class="main__container">
-    <div class="main__img--container">
-      <div class="contact-container">
-        <form action="https://api.web3forms.com/submit" method="POST" class="contact-left">
-            <div class="contact-left-title">
-                <h9>Get in touch</h9>
-                <hr>
-            </div> 
-            <input type="hidden" name="access_key" value="6501dcba-c393-449f-9ecb-28475d858f92">
-            <input type="text" name="name" placeholder="Your Name or Your Company" class="contact-inputs" requried>
-            <input type="emailt" name="email" placeholder="Your Email Address" class="contact-inputs" requried>
-            <textarea name="message" placeholder=" Your Message"  class="contact-inputs" requried></textarea>
-            <button>Sumbit</button>
-          <h4 style="color: white;">I aim to reply back to all messages within 48 hours. Thank you for your feedback!</h4>
-        </form>
-
-        
-        <div class="contact-right">
-        </div>
-        
-        
-      </div>
+  <!-- ===== TESTIMONIALS (optional) ===== -->
+  <section class="container">
+    <h2 class="reveal slide-up" data-anim-once="true">What clients say</h2>
+    <div class="grid stagger" data-stagger-step="110" data-anim-once="true">
+      <blockquote class="card">
+        <p class="reveal fade">
+          “A rare mix of speed, craft, and UX intuition. Our KPIs jumped within a week of launch.”
+        </p>
+        <footer class="reveal fade" data-anim-delay="80">— Jane Smith, Product Lead</footer>
+      </blockquote>
+      <blockquote class="card">
+        <p class="reveal fade">
+          “Pixel-perfect implementation and great communication throughout the project.”
+        </p>
+        <footer class="reveal fade" data-anim-delay="80">— Rahul Mehta, CTO</footer>
+      </blockquote>
     </div>
-</div>
+  </section>
 
-        </div>
-      </section>
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="container">
+    <h2 class="reveal slide-up" data-anim-once="true">Get in touch</h2>
+    <p class="reveal fade" data-anim-delay="80">
+      Email me at <a class="nav-link" href="mailto:you@example.com">you@example.com</a> or find me on
+      <a class="nav-link" href="#" rel="noopener">LinkedIn</a>.
+    </p>
+
+    <!-- Example contact form (animated fields) -->
+    <form class="grid" style="grid-template-columns:1fr 1fr; gap:14px; max-width:720px">
+      <input class="card reveal slide-up" data-anim-delay="0" type="text" name="name" placeholder="Name" />
+      <input class="card reveal slide-up" data-anim-delay="80" type="email" name="email" placeholder="Email" />
+      <textarea class="card reveal slide-up" data-anim-delay="120" name="message" rows="5" placeholder="Message" style="grid-column:1/-1"></textarea>
+      <button class="btn reveal fade" data-anim-delay="200" type="submit">Send</button>
+    </form>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container reveal fade" data-anim-once="true">
+      <p>© <span id="year"></span> Your Name. All rights reserved.</p>
     </div>
+  </footer>
 
-    <script src="app.js"></script>
-  </body>
+  <!-- Your scripts -->
+  <script>
+    // sets current year (nice touch)
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Animation runtime (added) -->
+  <script defer src="/js/animations.js"></script>
+
+  <!-- Optional: page transition helper (added) -->
+  <script>
+    // Fade-in on load is handled via classes on <body>; if you implement route changes,
+    // you can call this helper to fade out before navigating.
+    function fadeOutThenNavigate(url) {
+      document.body.classList.remove('page-fade-enter', 'page-fade-enter-active');
+      document.body.classList.add('page-fade-exit');
+      requestAnimationFrame(() => document.body.classList.add('page-fade-exit-active'));
+      setTimeout(() => { window.location.href = url; }, 260);
+    }
+
+    // Trigger enter animation on pageshow
+    window.addEventListener('pageshow', () => {
+      document.body.classList.add('page-fade-enter');
+      requestAnimationFrame(() => document.body.classList.add('page-fade-enter-active'));
+    });
+  </script>
+
+  <!-- ====== WHERE TO MERGE YOUR ORIGINAL CONTENT ======
+       Replace the placeholder text, images, and links above with your real sections.
+       If you share your original index.html, I’ll slot these classes/attributes into it
+       exactly and return your file 1:1 with animations. -->
+</body>
 </html>
