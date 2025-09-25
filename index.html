@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Winston — Portfolio </title>
+    <title>Winston — Portfolio</title>
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
@@ -33,7 +33,7 @@
         font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
         color: var(--text);
         background: radial-gradient(1200px 800px at 80% 10%, rgba(122, 195, 255,.08), transparent 60%),
-                    radial-gradient(1000px 600px at 10% 0%, rgba(124, 243, 255,.06), transparent 60%),
+                    radial-gradient(1000px 600px at 10% 0%, rgba(124,243,255,.06), transparent 60%),
                     var(--bg);
         overflow-x: hidden;
       }
@@ -128,14 +128,14 @@
       .services__card::after { content:""; position:absolute; inset:-40%; background: radial-gradient(600px 200px at var(--x,50%) var(--y,0%), rgba(255,255,255,.12), transparent 60%); opacity: 0; transition: opacity .25s; }
       .services__card:hover { transform: translateY(-2px); box-shadow: 0 16px 36px rgba(0,0,0,.45); }
       .services__card:hover::after { opacity: 1; }
-      .services__card h8 { display:block; font-weight:800; letter-spacing:.3px; color: var(--accent); margin: 2px 0 10px; }
+      .card-title { display:block; font-weight:800; letter-spacing:.3px; color: var(--accent); margin: 2px 0 10px; }
       .services__btn { margin-top: 12px; }
-      .services__btn button { background: #17233a; color: var(--text); border: 1px solid rgba(255,255,255,.1); border-radius: 12px; padding: 10px 14px; cursor: pointer; transition: transform .2s ease, background .2s ease; }
-      .services__btn button:hover { transform: translateY(-1px); background: #1d2b47; }
+      .services__link { display:inline-block; padding: 10px 14px; border-radius: 12px; background: #17233a; color: var(--text); border: 1px solid rgba(255,255,255,.1); text-decoration: none; font-weight:600; }
+      .services__link:hover { transform: translateY(-1px); background: #1d2b47; }
 
       /* DesignWork header */
-      .DesignWork h9, .Projects h1 { display:block; text-align:center; font-size: clamp(22px, 4vw, 34px); margin: 0; }
-      .DesignWork h9 { color: var(--accent); }
+      .DesignWork .section-title, .Projects h1 { display:block; text-align:center; font-size: clamp(22px, 4vw, 34px); margin: 0; }
+      .DesignWork .section-title { color: var(--accent); }
       .Projects h1 { color: #fff; }
 
       /* CV panel */
@@ -146,7 +146,7 @@
 
       /* Contact form */
       .contact-container { display: grid; grid-template-columns: 1fr; gap: 16px; }
-      .contact-left-title h9 { display:block; font-size: 26px; margin: 0 0 4px; color: var(--brand-2); }
+      .contact-left-title .section-sub { display:block; font-size: 26px; margin: 0 0 4px; color: var(--brand-2); }
       .contact-left-title hr { border: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--brand-2), transparent); }
       .contact-inputs { width: 100%; padding: 12px 14px; border-radius: 12px; background: #0e1524; color: var(--text); border: 1px solid rgba(255,255,255,.08); outline: none; transition: box-shadow .25s ease, transform .2s ease; }
       .contact-inputs:focus { box-shadow: 0 8px 24px rgba(124,243,255,.18); transform: translateY(-1px); }
@@ -175,14 +175,19 @@
       /* Footer-ish breathing line */
       .breathing { height: 1px; margin: 48px auto 0; max-width: 1120px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent); filter: blur(.2px); animation: breathe 3.2s ease-in-out infinite; opacity: .5; }
       @keyframes breathe { 50% { opacity: .9; } }
+
+      /* Small utility */
+      .visually-hidden { position: absolute !important; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px); white-space: nowrap; }
     </style>
   </head>
   <body>
+    <a class="visually-hidden" href="#Home">Skip to content</a>
+
     <!-- Navbar Section -->
     <nav class="navbar" data-animate="fade-down">
       <div class="navbar__container">
         <a href="#Home" id="navLogo" aria-label="Go to Home"><img src="/WorkImages/Untitled-3.png" alt="Winston logo" height="50"></a>
-        <div class="navbar__toggle" id="mobile-menu" aria-label="Open menu" aria-expanded="false" role="button" tabindex="0">
+        <div class="navbar__toggle" id="mobile-menu" aria-label="Open menu" aria-expanded="false" role="button" tabindex="0" aria-controls="navMenu">
           <span class="bar"></span> <span class="bar"></span> <span class="bar"></span>
         </div>
         <ul class="navbar__menu" id="navMenu">
@@ -198,8 +203,9 @@
     <!-- Hero Section -->
     <header class="hero" id="Home">
       <div class="hero__container" data-animate="zoom-in">
-        <h1 class="hero__heading" data-animate="fade-up" data-delay style="--delay:140ms">Welcome to my <span>Portfolio</span></h1>
-        <button class="main__btn btn-pulse" data-animate="fade-up" style="--delay:320ms"><a href="#MyCV">Explore</a></button>
+        <h1 class="hero__heading" data-animate="fade-up" style="--delay:140ms">Welcome to my <span>Portfolio</span></h1>
+        <!-- Use anchor styled as button (valid) instead of button > a nesting -->
+        <a class="main__btn btn-pulse" href="#MyCV" role="button" data-animate="fade-up" style="--delay:320ms">Explore</a>
         <p class="hero__description" data-animate="fade-up" style="--delay:520ms">Junior Software Developer</p>
       </div>
     </header>
@@ -209,11 +215,11 @@
       <div class="main__container">
         <div class="main__img--container" data-animate="fade-right">
           <div class="main__img--card">
-            <iframe src="/MyCV.pdf" height="700"></iframe>
+            <iframe src="/MyCV.pdf" title="Winston CV PDF" loading="lazy" height="700"></iframe>
           </div>
         </div>
         <div class="main__content" data-animate="fade-left">
-          <button class="main__btn"><a href="/MyCV.pdf">View CV</a></button>
+          <a class="main__btn" href="/MyCV.pdf" target="_blank" rel="noopener noreferrer">View CV</a>
           <h5>Explore my work in C#, HTML, CSS, and JavaScript as I launch my career as a Software Developer</h5>
         </div>
       </div>
@@ -226,40 +232,39 @@
         <h1>C#, HTML, CSS, and JavaScript</h1>
         <div class="services__wrapper stagger" data-animate="fade-up">
           <div class="services__card" style="--i:0">
-            <h8>Php, Html, JS & CSS</h8>
-            <img src="/Images/glow.png" alt="Glow with Chlo website" height="200" loading="lazy">
-            <div class="services__btn"><a href="https://glow-with-chlo.com/index.html" target="_blank" rel="noreferrer noopener"><button>Visit Website</button></a></div>
+            <span class="card-title">Php, Html, JS &amp; CSS</span>
+            <img src="/Images/glow.png" alt="Glow with Chlo website screenshot" height="200" loading="lazy">
+            <div class="services__btn"><a class="services__link" href="https://glow-with-chlo.com/index.html" target="_blank" rel="noopener noreferrer">Visit Website</a></div>
           </div>
           <div class="services__card" style="--i:1">
-          <h8>ERD Model (NHS Demo) - Database & Big Data Module (MSc)</h8>
-            <img src="/ERD-Model.png" alt="Glow with Chlo website" height="200" loading="lazy">
-            <div class="services__btn"><a href="https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&target=blank&highlight=0000ff&layers=1&nav=1&title=ERD%20Model.drawio&dark=0#R%3Cmxfile%3E%3Cdiagram%20name%3D%22Page-1%22%20id%3D%22tlaIIGv_bf-G6xC_cAmC%22%3E7V1Zc9s4tv41qup%2BsIoA90cvyXTfSdK5dqZmMi8u2qJt3ZZFNyUndv%2F6Cy7gBkgEKG4gTx66TYqEKOI75wPOutAvn9%2F%2BEXovT5%2BDlb9ZYG31ttCvFhjbFnLI%2F6Iz78kZbBlmcuYxXK%2BScyg%2FcbP%2B209PaunZ1%2FXK35Uu3AfBZr9%2BKZ%2B8D7Zb%2F35fOueFYfCzfNlDsCl%2F64v36DMnbu69DXv23%2BvV%2Fik9a5lG%2FsFv%2FvrxiX41stzkkzvv%2Fs%2FHMHjdpl%2B4iS46W3nhn78ssP4x%2FrfAl%2BRv%2B4q8Fe3X5LZnj35J%2BgZ2T94q%2BFl4Gv3DQr8Mg2Cf%2FPX8dulvordO32dy38cDn2Y%2FKPS3e5EbXp7sb2fe7W6z%2BZ%2FXP8P%2FftH%2B%2B8%2FLM5z%2B%2FB%2Fe5jV9U%2BnT7t%2Fpq3sItvt0QhF56oun%2FfMm%2Bpv86W9X59HkkMMP13%2F7YfAt%2BOxtCUYudnsv3OefPXvb1R9bMsRF%2FCb96Jm0eIB9%2BP6f4sH36GBp0sOrt%2BKHV%2B%2F06G29j29b6m56GN2Ilhr5Rclxfmd0ULzxqx%2Bun%2F29H6bn4h%2BY%2Ft7oV228O39zEYQrP7wMNkF02TaIHz66kp4q40CL%2FyU4SP7%2BlVzPzlE6bbvgNbxP36%2F19ef27p%2F%2F94%2Bbm%2F%2B9%2Ba793782H56%2FnxGZS6XECx%2F9%2FZErDSuVTX9VEoEUBf%2FwA%2FJbw3dywc8C8LUUlU9FzNOTob%2Fx9usfZdHxUgl8zAbMvuNrsCa%2FD2upujgj0pPe9E7lzC4Pkvz%2B9L4iaKtDIddGSxeXRnOQs0RYy%2F5VHjB5Y8zYBIzee%2BGyl%2BiC3bFfYeha6XttBxcHJH8kY9KjwsvOT8VSyJfImw9vn9Dur%2Fs%2Ffftv7ensp27hP89QewJJMCsrj%2FFl6dhOMl7xKJM609ILYqctXdeVFrumsi8griKyKSvLyddkZMC%2FtUgHmqa7Hz%2F2pgZ0PDo1oJllAUJmUzWANVsvDWXolaFak3rddUvfpNs9SL3eNg0nwt221Bep9qi8d0epudZYGlZZcWgI1S0boqOqHmounQbCotJpmmOTTuQ4ZgnoVlWkJEjatMpDITHpbCA%2B3NebLdYLAnTpbaPVu88IUjQFnyI8loXII%2Bjbkr%2FvCQwibFz88MP9muwgztMPnter1SYWHn%2B3%2Ftu7i8eLAJTqFDK4ebEwr9qHP%2Fmv%2FhD%2F47PJUZVCfoX%2FVgJJusdKfwHdOLBQpNOrLYlSRKehjl4SPDzs%2FE4wQJmyAIFr%2F8fa%2F7ljEEC2Yi%2FRn%2BkrKOk%2FPZpR8ob23nobqwgUH2823stufZfN6P3TerP65L0Hr3s6ED26eFi%2F%2BavrZMuKYmX78xMZbHdANzLAi%2FFFhtvt0ysKKD1VkSYLlKOLEgYxh5GBdLfM8E4q90Ut5vC0GF1a86BTQoY0DOx6Ki3N%2F3VEjhdPQbj%2BO5r1DYcT4%2BOf6%2BeNt%2FV%2F871V5dRFsMp4b73ZVOaljJ3oolUYvHyjjMEqkItoqiKyJaqEzJl5gfLjWLu8BCGZ6e1uH3rreO58ApWffgSXi33wkg668R%2Fo%2BGH64qO%2F74L9PnhO0dTnzve40NZjji7HNDGEdQcwhwHY138ehBh5A%2Fu1t7mO9O32cZMAoqh%2BD6CGO4%2FZ3FUntTqPAXmfD5t41fdEWMsn6uXi59N679%2B8ePGK5mfovbSrWOSn3hae%2BsJc65JTnQ6Wv3%2Fp0bwN0cpbb0%2FEnKyZd51QF7t6Sanr9vergaFF2Sm59mJHALTePn5K7rQq2DOnh723w2rHbBWLQsP1AEaqTIFAawi0b9NxSwRqCRIo7opAHdbE%2BXFoAvVXazpeQ%2F4cHAmZ3J7Mp8dmXp5Pq6P1ocIwu0Qj29aHIHxWgFAnDj5JQm0ORqHh%2BkAja5gAQp0QoTqDEypr8gBCbUGniSNh8oTKsXl4%2BzV5f8CnQ2NvdnyK6XMAoU6TUDMX52A2XmwKhOGMjlAHn%2BpcMsGmi012E3rt716IULMuaQUYUylwzc5oizQWbQtsbdL53ZbgZv31GuzTiTrbxfx3Ti5AxstbPB0aeb37s2RVFH2Qro%2FyG8lfj9H%2FL3%2F%2Fcv7bp9srb%2B99DYN7f7cjOKJfS35H8s3JtccZejEnJ3xdOEcDP7xF12E0Ph%2BxjvhsrVZavxldcSjSBILaYJk2lh1HrkFOccVzMdbZMg1pbPoC%2BOIbTf6haLH5LdyQZspTaYUxt4EcZ8ZWFDnaHMlSUUXvvwzaj6wk3XZXkiLD9QJ%2FNhgFaHu01pUGtM0JAODSdncrQ5oUCg6LlrHgCmOhhnePzb08i1dH60ONIZ4FrzUW%2F%2FLbze21v%2FO98P7pm%2B89q0vgUwe6JIE3B77QcL0gn2cKAgKfDoHz%2FCM9b7wRa9sBBm8BDEgcDJPfhyNebYqEY1frH0UmPn8lU8%2FScOEqYOFhwTq%2FbTRm9zjAwpNi4eHN31jNSPrhZzsTTqBZRPUSJ1hezdg%2BpeA1O2I0DHALT5wYRQ3MnRGjYbBbByBGgdnOhROI0TBYP3Aa9A682Dm6ZseLSIM0sYnzoivIi50liiFNojjOaFhx9HYwDRLF8nfBZoq16HYtR019DP2%2FXv3t%2FTu4XkcJdkkOPyEzTWS4XlwWwOHT5vCsnv2ArlcVOXz4uUatkbTyO1uEeCStHlcqBarZbWg5boXEenKcEReQCXZaRVaaKE0Zi1eS1eKtl6yuKAsM%2FmKLolEs8KWXRDyNxsNXd9Z%2BVtEMbetXMQcMLP%2F0TShs91cxHasVp0C7QBQargck6hJlSGZNnaOwJ0hTJ68Ua6%2FUSXsGjWcjqIItQRdflk%2BdKnV2bf%2Fltxty4tp%2FXEcyvV8H27GTpuogmx0tgpV9yqzIcZP3y4oqGtjH7jcE63tW2pNlTO9ZyZJw08Hc7BgUanxMmUGzBITBKJRT4QM49FQctFbdQ3kO5RT3OF%2BtQn93uNcj8GgPuJsdj0KtjWkTqTk4kUKhjW5SNIFL6atg%2FedJ80lo7TE09GZHpzqv5AvQ6WTolNcqq1%2BHJ6%2B279jJdPCJzsQS2FJnfU%2BfyRTee5tb8uBkTlSkTJUANjtOJJsQIMUJkyIvpYgfoN0VKWKZtDVgRVYwIe8Xc7LSoowJVV2bSoFLkhJPyLMdDdokEtiAEgfHsjQlDp5TgpGEhxwokRVM2CliTgXYK%2FKNfzxcrEPyrMCK3eJrdhtFhNll%2FIfnO2%2FnMx0aj1FlhRZHnoA7UJqta6fzSy2bnHaL3MWS3RVjISwRtjrrNdFIvEDSbbF59aZlNdmJEGOX3ZBq22jybeHJn%2FoyCWHeSlukYljKE1HJsIwqFkzz4iPVxLjkqG4nJxVzf2Uk4fCCDmutSobQcH3sIGyonKGQmaMBpfMqZfdK6diGStnNdqI21MvI3wXroeQ2SBw3fyqPsxkSpESaCRDk0FhuQJC8ktk9EyT0WGqouDThyZ4%2BQWIGRGzfQmDHTkE2O3bM%2FBLAjhNlR16eb88mYU6FMhXocfRJIjqwZ%2F4uWPZssadEsdmhknbfqeN7dsSNLXDlTpy4OXnFPe9rrdH1AFBiV2uB5zZ%2FF6zn9mCDJvUoVCmszY8jHSgCOXGO5CQL98yRjoqVIAef61w0gSOxwy6zPq6j7%2FVX5GxEl8CNHWNsftzo8gwmwI3T4UZuG8J%2BudGViE0DbmRFE7gRu2zs2bfQ2%2B4e%2FJDQ48cweL69%2FP3L%2BW%2BffvlOvuDLr8CUHSNufkzpQCHkiTOlMTxTSrjhgSlZ0QSmxC7rZc%2BtrLlwK1n9WCmkzY4hkSFgZ42nMCE%2FhBclT7O%2FXZ2HYTzjH67JNH4LPnvbd8qY%2BUfP3nb1RzzLYfRb%2FIw1C8TqJOMVj97W%2B%2F9EVy5d102Pv8fHlk6Pr96o1osOKPUSSITv%2FykepPdZNj2R3xgfle786odr8mrjhGg6dvVcn8BO9cMueA3v%2FWNYt9Pp3NMVxaErDUpb%2FurRF9W%2BiIfa7GTob7z9%2BodfeuQjovE1WugsCr2NXVdbao6W%2FUuRmOVgm0vNyj%2FVrPI3JC8nHTSXFPZ7cvcsHVm3y0Mlb48ZisDZey9clq7UDv%2BiPMA5i%2Biya54tW9Dw7yB%2FJE%2FRrhYw2d3%2BZRx5E69X74KQKKEYClFhC8t7juJNtne7lwUnfCYC1KdIFsqagkn7j9RxVFjxPP3gmTBGzFxxPYACb5UXxFcdiN7H%2BJ%2FMStU4tFKNXlmReBdpnZCDXHOmLZFhOKVJx60IFCojKas1TkcIHh52%2Fr6CrnbwZAk0No1wQieR7GGegsdg620%2B5GcvOuSdnFkMwygwCzrOKhwayJiGTKQWP2ZGN9EZjJrwzRi5xaAmwXpuscyxcQvWXLSk5FggFMdw839N%2BUTTy5Jmm13xiVbhEzutV9stO3BiiRJ2WG%2FvN68rtgKgehSgRSVkNP%2FBP1BCpkbNncwC2tJEptXSOqpMJmdGb2qfk23MYKNLpZ4t%2BpeW5lQ1sWbVaeKUExC5trzbQBlHSPICT6%2F3o62RbQtqa0TX2WPS1shemiUUV5fowtoZObq7tApavrLU0rNvaltbk1V1%2BTfULf6R4VhHbuhIu9u8KJia8PsIx2e7WIqj8HtkvLzFaNXiD36mmIg%2BMjRtwavbcjBev5pZLhu1P9UiZ0c3KfIVzrCpVTaabImzLESrJOSd1alGNpR9FfPWjCPHwxaPXz1c4oyLse7y2WzWIQglzhpNPlSCzd4FhXA3CWzcUitKZrIpWcFMAuhHStKarQJfaLhekC9g5wPGPqDnVWBsTgWznhnbweIQG014xejzcx3xHcP06Zt1fsU8%2B9l%2FvvNDJYMupoS%2F2bFq5sQHVp0oq3LKnvXLqphr9Bs7qw4%2B1blkAm1ijrXu5vXFD3%2Bsd0H4fnsdbHwI7O8Ha7OjSMRNgWvqtJBxTWQ1%2FWbgl2jDp95qWxbkVPqymFiMSDt0Wsgkys16sTaOjYdEutRonBacRDpwWjSafCjqnr8LXtvpVp0W5fK34LEYIcpnt3DEHAcw0PV4bSvydD24xwJz3cFgW6nd70JCaA4h1q%2BquktCKYDNjxdl3KzAi0NjuQEvDu9z4PhZgRcF0tfFp3r6vMhaQsDnMAzW5keR2rClErLspiw%2FqZRnai4a5JnmabCWRQsufE%2B%2BIklllUp5GmPWagbp%2BqxV2ql4PHlQyK5WKrAbp0HZVdeJ1VGSKvPQht1DkirWBJJH2ks5%2F9sPg%2BYCXBTeaIUqlpeoLW3bWhTzEl1XPl9dcSGl%2FfrGJKR6a0LqVGo2OLq91Ar%2FcFciW%2FkJDsI9iCz9sUMRap7vi42CXEUVOUxdWrAK2cd6nmtM%2BXkyZSCQcBmIESYWI6vCgm5jUTWt8khZAmXrwmlV%2BNSuSyM2TfPIDd0Is%2BGw%2FsSkSMRLUsmOS8YKFok4EtBSo%2BVaKBJhuFYlLf40uchKA5Xv6K5EBEZDl4hYfVxvNgtGZZM3W1TZ0QbIaaKy88WaWVyqHWWTMap50QUZpsppREper6S242o9HnEtr1d0L1OHQlrLty1Rhst6tL%2BGwY%2F1yp%2BCzpWvzZarmDZqs2mI7jjaqc3Wg4rFrPPwi85AYb5xqS1X0nCrezZXtJIGLfXYvquFohS8eSoEpcqgbixBqdnSE4JST518LDz5k%2FfvYXZ38EW%2FvfHvX8P1%2Fj2OIx0UYJMMGJVB4Oy8fjqCZs0KBcY0oFLRgNHOUoh0xGkiODSVqhAak8vmydR5bHLlqbM6Wi96imMGIFvUhyB8VoA3lceXJDE2x5vQcL00reElEAExTocYOQ2ae95juhKFUIAWWcmEHWXm4C26JRNY%2BKvbK%2F%2FH%2Bp5jJgdybBdls9s1YhdKGU%2BbHBGnRXPf7CiRygrsyIomsGPmKC%2FmU8TG1sja%2BtH39q8h0GPnMJsfPersqowaK47T5GJOjuq6eDN5XzVTP8kW9VU7ndGYDksllXzVunpdH7AOXR9amnxYO2XvwmDXTpTDxm9vV9JPLYG%2B%2BS2pTIHAaqDRA8pXBRodvrCRKeHxAYMDK5lAmthkPTqZl%2FqL98y2kh0ZbyqPsPkRowHEOG1iHL6ykcESowoBXGPvEpOLLjAnNljmVCs0euoInB2zGhyzGjDrlJg1a5swGLUaHCvb%2BIl18LnORROY0zAkmpSOmCuVAtXsyBBb0Adm4mRoDk2G2JIwZQAZsqIJZIit0dnw1SRDGVDNjwxNATLsobKftkRGsQxTVM9Fo3VuZSr7HSga5RrGolg0ajGqGn%2BEp4M%2F%2FX%2Bn8EBcbAuXg6J8qWRBKKylK1fqSnUaF4TClWovqKsyug41PdEoKreu7B9ytRPvoIWyjvx8fPSOjgqFWkNX3j4g%2F2ZR%2BrU66c%2BUkqNXam07prROGqBmXEWgRXRBojUGFH3bNpfYdLN%2FThm9jrs0jfxTmtIkrRYczVza6NDXmLazxJaQmmhLZExae5Upx7ne3m9eV6yjfRal4axDPZWblIZDll5W0eg0zHZfGk7XWFPY%2BdffGSxAyH17IfdYN8qU6ViDx9zrHO1wHARzNVaNwguZi606Mfe6BvXhWpp8LDz5U7de6RprACX8pUDwg4rx9jLIm52JS9eg%2FI1C%2Fp4GFDp4vL0u0nBsdO6esYd05YILfKprbB72x9ft%2FX4dbJUNx58SAGdIq5ANPm1aHTxaX6fOIIjWbxkLkByeVw5lw1a%2F%2FHZze%2B3vfC%2B8f%2Frme6pWZZ0SDOdHr0giFhbodXgsy9elGzxkX0escwH4tY1q1OJgmD6%2Fst6FiF%2FPX8k8A7mOAoMzJFfINJ84uQ6eAqAjNVPNh5%2Ftg10h58ierGPhytt7X5NOzYSmFKVPpVA2P36kW5MK7MiZHHnk4Ju3%2B%2FM4by4gJO2UkDSmo3wWD1%2FbAwt1RmycrrWweBpvSFomywqFpFFEQUjaqZMPloj8XbCWCOXWUkpGp8kT35yWWmCKUMkUIc%2Bmw0en4dFlkk%2FByI%2FBTJG%2FC9ZMEe0NITJtBOCbIaVCI%2FBpU%2BrwkWlYIvgRKFUYCa11CZ8ApbKxj9Fu9fYmKQACpDoo%2FOZHqvQ7gVQnSqojiEfTR1f%2FcwqsqotDYfKsqrOOhXijeuXv7sP1S5ROBdQ6LAZnSK1QkHbi1Dp8NJoOBWkb6S0oSJu%2FC9aNcL7bEbbyV7dRJDe0H%2B8aYjOkRonCCkCNg2O5ATU6w1OjhLsAqJEVTaBGXWfdAYWwoq9e6MUVYYEhu0baDBmS9RN82JBnDoPt%2Bp6cvwruX5%2BjF4wt7zmyC2zvdi%2Fxy7c2EQhW6x%2Fkz8foz8%2Fe1nv0k4u1m%2Ffd3n8mf%2Fzy4erzza%2F0cvKQhTuOc%2FFiTsHfR2vcNoj8xpQEaRgREi1GijtjSpkWX7NejY3E6CbeBWo0kd%2BcFmAQ%2Bd1k8g3xpfjkl2cGa%2FWPSA3ivQeH3vzWawYY%2B1WyaMhz6PDx3oaKtv7RuzANcAXk74J1BUTBaZ%2FXW0JftC6pktaOKcFwhuQK7oJpk%2Bvwkd%2BGit6C8Ws1cCbk74J1JvzrZUW%2B82Po%2F%2FXqb%2B%2FfWVsuEO2QkJwf0ZqsReX37d5%2FDMnXrsj5S%2FJ6S06E3y9jH4IYbHneAzxp74HWfukYnXZmpN3M9OEdCCLdhmF9NhoVmEm58Pps%2BBwCkzV%2BgAOh0eSDvSN%2FF6y9gxAa%2BA8GR94MV15g4lDJxCFPocPnCphg4ugCCWDiyN8Fa%2BKI%2BBTKxQyPvdkxquFAPdNpM%2BrgKQaGw5rLxs%2Bog091LplAmYbDms4g%2B65XiM2OGXWLb%2FaI2%2FYk4EuSBSTM%2BJAEIGPDNys2fJdGsg5Y%2Ft0CA4RKNnxLvIfxaJIALNYAATb8RpMPNof8XfBtDor0oFPSkC8BvxkurtjETeDR8Zod5Hl0%2BEQAW2MgpkILutGbUzPRBVrVbdZ6qoZrfOrImx%2Bj2hJWVmDU4bEszajDR%2F%2FbrBUWGLUFLGSiC4yq22wEY9Qx%2Fdrf%2BV54%2F6TIhnXqMJwhvUq0kQJ6HRzL8vQ6ggrwNutcAH5tQ7GJg2H6%2FMp6FyJ%2BPX8l8wzkOgoMzpBcwRo8cXIdPq6bfhtEocnpLbD25hBirb15INDtTaR8bq%2FII6hIoEohbX4MKRNDCww5OJYbMOTgcdo6J8gWGLJ%2BrjPRBIbUHdZ6W2DID9sV8GMfOJshPwpkbcZTmFAfwmX7gL9dnYdhPOMfrsk0fgs%2Be9t3ypf5R8%2FedvVHPMth9Ft8yplk6sL3%2FxQPvkcHS5MeXr0VP7yixOq%2FrffxbUts2ulxcqdrO%2Blxfmt0ULzzqx%2Bu49YK2dirj%2BsNpfo%2BEZsujHdJe97D84SpiXNPFwoHZxSlqsRfPfqiShVpHDhmJ0N%2F4%2B3XP%2FzSIx%2FB%2FNdo%2FZJL0xkZKX0mytk0VJcOkvz%2B9L4c5exQyLVwaSgHOeWhkhfEDEWg6L0XLkvXWEce2qAiSh9aS9tA5iKYDNqyQAqYdLoUyEywEDILgoWWWnbcVLByYV%2B6rlsWeM2260Q%2BOqp%2BwQCyWi%2BBGhqbBCK7khKCqM9SXgJNWmyfDoW0ijS3JYLMU7vpVx9%2BONuQvcO1K3ekBa8O3oE199Q7HKf0VB1pEvqlg1F7SfapXimStbQ%2BGSM1Z634RiTuFq4ArjHhEq6uoL06VGvSblUk0amTK%2BYO8gLrbnEd2VuwJn8LwiffQt9zxzpCoIpBEx1RFv6yYjioP%2BIPeOsFVF4rOBpuslbIlzalhc1RJTRKhUNrGdSvRGgqzYhUU5ZjSnHuNN4L6NWh3K5UU%2FWhq%2FLcjXSaGscqFPrxLOxegm1iRMbaAwFdXZHUCAGfIvCWBZhJc46MJOt7b3OefvC8Xq1ie1Kc%2F1ywJpWN1FcdyMqxrOgabVa19GCtbA5bpCUnD1qAyIbEQuZpkKeXBA8PO39fgUtL6hszABlwiXfAluOQBdJJ6lqzcdnEYx1X2qqsHCWMOtSGOR5FjpHhlnWi2ViRm5pZHgoZHWlybFS2YtlXHX46x5C%2BxbKO39IVX7CxtpfeNn4%2FkS9hgiSh1VTArlGbLfCEblTAe4bHTxsCMdmitJFzw7E1f8H0ZyJc5AfUhBsq%2FMRQF8%2FwsDTcoqcALTVNnwaNUBN4LY0gNL79QLXgvNncN2BWttAG7mo%2FwDy0W8cIBpK9w6RmVf4dXRkEBOr0iKqGv%2F0wyOSysQ2Au8Q8I6tCreJCQNqJ60xHd0vrTE2T93j0J%2FZIEzUDICoHIxJ7Q6%2BskJqLfdW63pnUG3plmVonwri6DKy7oWpsrb%2BhapiQvSF1cnasVNggg8vfv5z%2F9un2w%2FOdt%2FNvv4XedvdAhKiqauZbFK5uZdugLhyDLmp6q%2B3tQl3h7cfOuWx9peMgmGt85jiycTJJVqgunMtGVEBduEaT7whP%2FtQDNg26ECqAipKYApmAStaFk4Df7OI4DU3AkQs8ekD7qsCjg9eFM%2Bh%2BU6k0h7HnN%2BeCC6RqaLxEGmuTcti2BDXrr9cglnz%2FbX%2BWTOw5uWAbpJMcGUaij1b%2BfRB6UWf5s806msnoqsgUFSaHF%2FlQ5K%2FH6P%2Fp3jTqTf81DO793Y6wZ8zqybOQH5c8TnL52Ml%2B6mIxQ7Jn40KA7KdE9oOXrDM4rmQg%2B9O1miGMhOmTPetpSq3BHOIFhh0SizNkWIlmlsCwQ2O5AcMOX7XO0CRcH0CxwmpNHArTp1heLmmyh03mOdvBpifvIh1UPRkyZ1b0TIGlc1WyK%2ByT80uLJ5kRo5O8747Ocx%2B0lafv8jlhwTKkZM9vwULDOtoN6ayEaR0J6CrmduulfK04VKtZZFYp9qsaGTbG1O8sJmtEkVZIrxRfaJ5wZVQCLKsR%2F61FWlWfuTbg3kDmkRu6CWsyUIvJkwdlrhjbfEDkIglD5qIcDIkbBVYfF7k8VNLWijmU8QMsphBLne0kakUd2%2BNL%2B9ZoAlwm6kZTUdcr1U8wDR1vXdY1mj%2BfVXTpQ3RZX%2BZ1sI%2FdRAfXbrwYRGPSMYgtN6bFWhVUOhuAmKXalhrTOp3twpFE8b5ZW3rGsQnIBFfY0mOwmwAuxroz9CDWXQcBiI0mXxee%2FMnbdhDroKMMNn6HiYrxhzLoO2J%2FkLUx19gfRIbrA46UNYFGVXCYNKBRe3AaxdBFrxMsYHEsTJ5VMS%2ByqnEEIhNYGOmkuzQcEeIJRwry%2BZE3Ekj6BvJWmLwzE2OtoaW7TbBERA1wtzAULGEo1LDtsZmX5%2B7qaL1oMV48TWvcffP64oc%2F1rsgzHv%2B%2FfKdPOmXXw%2FyeHJ6tf5RPdXC89Ch7kJOMALvMcjp0pPAImNIaZRcZDSXTqHh%2BhBPHSwEE19kcEIqezYR6GqaCIafbV18tidvA9BZG8AUOv0qBbL57cEx7MEnTo%2BcVr59W9DZPTjQo5D1sLVttvr0iNltdkSP1%2F7O98L7J2DIfnA2P4ZE0Ox%2B4gzJaeXbN0MKpFGMjh%2FHbxcT71A%2BffrkJQ10YaUmhCxio1aPpqcE9%2FmxuC5RWARYfHgsS7N4xtgDmoElbCmjYfHh5zoTTaBpQ2dNJVH%2BWrD644FybJwrRJAWtaFTk0mVgtz8qBLDhnfiVDl8bhIdGahSzlAHO9ocQuyO9jJ4ftn4b1EhN%2FJBtgUFhuwUabNjSGQLaK8oP59OIWGbp%2BAx2HqbD%2FnZi047pOZlUdxKvypXtxY1JRrSegtnxV5Uyc22aSyOFlw41OpKhSoM2E5BX1uFIWvnOaIqDE61zU61IZV4FQbXQUtaJo6OpptLp6taDG61nVS6Pu%2B0GAPmlClL2pbeZ%2FkyiQIiE8iT7hm0LM013cktS4kyMXTDKs3zGWoH%2B9ioDOuWh%2Biup6mhC1RTbLmnaVYNx7JwSTlrDarhZEyByixh1nCERCvUnoEsXHPHMgW1PXLHV3NHr2h7GzXW9lal0bTbWftSp1wnyDJlG1oL3GFyf0zHDbBZw2%2B5AfY82SNXjm2wB6JdJrNVwmmi1AM5GJjBRQvkIF%2BpTZPT7TnD6JZRYBh5dhlB8cT6hrY0faaWB3RjfDxgVpT3CX2ss2pXVNlWKza2RgTVh7Zq%2B8fq6OQ7XNwHE7D%2Bm2t%2F9xJsE%2Bs11h4IoudKB5k6PJkOtCXG1IczZv3fYlfzQfS%2F6zqlHQZyj5t%2F%2BtP3PLZpzgE6vXLEmt1oXkC3qtltisP2e5Uj%2FjeJ6%2BnKHR0V4jQEygKMUDJHsJ4aj4Q4doXhjcYCkj1TVnWqq6WPpvEfulu4my2WjG7ijkgJBZXIxBwJlZxAG%2Bb4NgRahTZQcz%2BAY5ftNXZ1pLakwq0UeHfsGtao3mBbNdsB5gbci9gJFPnthWWW2DYqXkC3rlD74SrsJZegvDtwjJIs3msBW6OTeVeviLzWnAmxVlUftLdEY6FvfVtFy8tzHHfxLpKRMfU22EdLoNcomxZ21xpyy40txm9rNQWa056saw8tcA7qSokFzyjVIoXBeJQd0sxKZEK2pG6w7q96i7prLVP9pj7MkYbJZr1cBs936618ywk9wuhkW04IOpWluk5UfZeI03WC18crq3ncftitCdU%2BxEK7x5HRZ4qnKaQg4wRhcjHWXWS3yclgGbrYh5JdJ0wo%2FpG%2FCzbKqsBjCtT9ULLzhAQCD8eAZ0Uf20Gk0HC9QBKypFTKkpKnUmtwKqVPoFjdrNEXSshEF5jVsA7XBYnLNrfXeOK21HkCakKPBuPz424LA3dPmrvd4blbzZLQo9drmegCdxtWp12jaFvHW%2BgYNVKAz5C4oYrXtImb28yhZ%2BZmfSTA3G0oNijzlb8LXvhxW7tublls2HiPD%2BYz5G%2BBbHngb5X5m9dtomf%2BZh0zKvD38LNtHcrWniFBcyo8QTOmnkE2P3q0ec4YoMcJ0SOv1US%2F9GhL%2BD6AHFnRBHI0bNa3wS1SDfzYKc5myI8COR7AjwrzI7eJQ8%2F8KOFiAH5kRRP40bBZDwLbIAnosWOYzZAeBYqaAD2qTI%2B8xg0906OEBR%2FokRVNoEfDZg30BXrMTKxAkB0DbX4ESa1vPRbrzkuwaFqlEQPSjMXxEizc8ikSlbfzki22qS%2BKpQhc213IFnMdaR1vjFJKqi%2FdQrurjaiaQRaqTOu36o1LtxhuuT6yUS0F21oxA0yzRuhDu3XVWFGlRE39HVr1xdTfYR69o6MSCw6n9ncx7WWBLe85ilLZ3u1eFkeCbqDowgENIFN0AVVqAhpszQVuF6Es7rD9FbMDuzKxXdk44rcc8aTnwzUXpBtfnQgxdlMGNRcaTT5s0%2FJ3wUtwby275EhqqEopJkrWdZBA%2BZHefrJ2p%2BOoFxquD9i7AntEoOsDSl4FuubUdeiZrl02zEuFCNXRh95nogvsbaTlBTti7%2BMpJioR%2BNSBPkMCFyi6DQSuMIFzijv0TeBsHBoQeBt67VAJ6zkSOC8OrVUCLyezAHuPEOWzY29T66RlhqCLFumZRzbud7nUNHvRrYt2gKrv9f2OaUfM8fhJmVY01QZNEh0ucNlNanbV79itdOKhz3y4SU31BrvW5VltnlZ7h26eeoel191huqfeYeonuW7JYRhEfJdfTnjg6XOwilqAfPh%2F%3C%2Fdiagram%3E%3C%2Fmxfile%3E" target="_blank" rel="noreferrer noopener">
-              <button>View ERD Model </button></a></div>
+            <span class="card-title">ERD Model (NHS Demo) - Database &amp; Big Data Module (MSc)</span>
+            <img src="/ERD-Model.png" alt="ERD model diagram preview" height="200" loading="lazy">
+            <div class="services__btn"><a class="services__link" href="https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&target=blank&highlight=0000ff&layers=1&nav=1&title=ERD%20Model.drawio&dark=0" target="_blank" rel="noopener noreferrer">View ERD Model</a></div>
           </div>
           <div class="services__card" style="--i:2">
-            <h8>C#</h8>
-            <img src="/WorkImages/SpanishQuizphoto.jpg" alt="Spanish quiz app" height="200" loading="lazy">
-            <div class="services__btn"><a href="/WorkImages/SpanishQuizVideo.mp4"><button>Watch Video</button></a></div>
+            <span class="card-title">C#</span>
+            <img src="/WorkImages/SpanishQuizphoto.jpg" alt="Spanish quiz app screenshot" height="200" loading="lazy">
+            <div class="services__btn"><a class="services__link" href="/WorkImages/SpanishQuizVideo.mp4">Watch Video</a></div>
           </div>
           <div class="services__card" style="--i:3">
-            <h8>C# & Unity</h8>
-            <img src="/WorkImages/recycleGame.png" alt="Recycle game" height="200" loading="lazy">
-            <div class="services__btn"><a href="/WorkImages/EcorunnergameplayNew.mp4"><button>Watch Video</button></a></div>
+            <span class="card-title">C# &amp; Unity</span>
+            <img src="/WorkImages/recycleGame.png" alt="Recycle game screenshot" height="200" loading="lazy">
+            <div class="services__btn"><a class="services__link" href="/WorkImages/EcorunnergameplayNew.mp4">Watch Video</a></div>
           </div>
           <div class="services__card" style="--i:4">
-            <h8>C#</h8>
-            <img src="/WorkImages/Todolist.png" alt="To-do list app" height="200" loading="lazy">
-            <div class="services__btn"><a href="/ToDoListVideo.mp4"><button>Watch Video</button></a></div>
+            <span class="card-title">C#</span>
+            <img src="/WorkImages/Todolist.png" alt="To-do list app screenshot" height="200" loading="lazy">
+            <div class="services__btn"><a class="services__link" href="/ToDoListVideo.mp4">Watch Video</a></div>
           </div>
           <div class="services__card" style="--i:5">
-            <h8>HTML, CSS & JavaScript</h8>
-            <img src="/WorkImages/QuizSite.png" alt="Quiz website" height="200" loading="lazy">
-            <div class="services__btn"><a href="/QuizSite/Quiz1.html"><button>Visit</button></a></div>
+            <span class="card-title">HTML, CSS &amp; JavaScript</span>
+            <img src="/WorkImages/QuizSite.png" alt="Quiz website screenshot" height="200" loading="lazy">
+            <div class="services__btn"><a class="services__link" href="/QuizSite/Quiz1.html">Visit</a></div>
           </div>
           <div class="services__card" style="--i:6">
-            <h8>HTML & CSS</h8>
-            <img src="/Images/Doc-Website.jpg" alt="Documentary website" height="200" loading="lazy">
-            <div class="services__btn"><a href="/Documentary/index.html"><button>Visit</button></a></div>
+            <span class="card-title">HTML &amp; CSS</span>
+            <img src="/Images/Doc-Website.jpg" alt="Documentary website screenshot" height="200" loading="lazy">
+            <div class="services__btn"><a class="services__link" href="/Documentary/index.html">Visit</a></div>
           </div>
         </div>
       </div>
@@ -268,39 +273,39 @@
 
     <!-- Design Work Section -->
     <section class="DesignWork" id="DesignWork">
-      <h9>Design Work</h9>
+      <h2 class="section-title">Design Work</h2>
       <div class="services__wrapper stagger" data-animate="fade-up">
         <div class="services__card" style="--i:0">
           <img src="/WorkImages/EducateFXLogo1.png" alt="EducateFX logo" height="250" loading="lazy">
-          <div class="services__btn"><a href="/WorkImages/EducateFXLogo1.png"><button>View</button></a></div>
+          <div class="services__btn"><a class="services__link" href="/WorkImages/EducateFXLogo1.png">View</a></div>
         </div>
         <div class="services__card" style="--i:1">
           <img src="/WorkImages/logo1.png" alt="Logo 1" height="250" loading="lazy">
-          <div class="services__btn"><a href="/WorkImages/logo1.png"><button>View</button></a></div>
+          <div class="services__btn"><a class="services__link" href="/WorkImages/logo1.png">View</a></div>
         </div>
         <div class="services__card" style="--i:2">
           <img src="/WorkImages/WMLogo.png" alt="WM logo" height="250" loading="lazy">
-          <div class="services__btn"><a href="/WorkImages/WMlogo.png"><button>View</button></a></div>
+          <div class="services__btn"><a class="services__link" href="/WorkImages/WMlogo.png">View</a></div>
         </div>
         <div class="services__card" style="--i:3">
           <img src="/WorkImages/WMlogo2.png" alt="WM logo 2" height="250" loading="lazy">
-          <div class="services__btn"><a href="/WorkImages/WMlogo2.png"><button>View</button></a></div>
+          <div class="services__btn"><a class="services__link" href="/WorkImages/WMlogo2.png">View</a></div>
         </div>
         <div class="services__card" style="--i:4">
           <img src="/WorkImages/Untitled-3.png" alt="Untitled-3" height="250" loading="lazy">
-          <div class="services__btn"><a href="/WorkImages/Untitled-3.png"><button>View</button></a></div>
+          <div class="services__btn"><a class="services__link" href="/WorkImages/Untitled-3.png">View</a></div>
         </div>
         <div class="services__card" style="--i:5">
           <img src="/WorkImages/PPPLogo.png" alt="PPP Logo" height="250" loading="lazy">
-          <div class="services__btn"><a href="/WorkImages/PPPLogo.png"><button>View</button></a></div>
+          <div class="services__btn"><a class="services__link" href="/WorkImages/PPPLogo.png">View</a></div>
         </div>
         <div class="services__card" style="--i:6">
           <img src="/WorkImages/whitepng.png" alt="White png" height="250" loading="lazy">
-          <div class="services__btn"><a href="/WorkImages/whitepng.png"><button>View</button></a></div>
+          <div class="services__btn"><a class="services__link" href="/WorkImages/whitepng.png">View</a></div>
         </div>
         <div class="services__card" style="--i:7">
           <img src="/WorkImages/dmf.png" alt="DMF" height="250" loading="lazy">
-          <div class="services__btn"><a href="/WorkImages/dmf.png"><button>View</button></a></div>
+          <div class="services__btn"><a class="services__link" href="/WorkImages/dmf.png">View</a></div>
         </div>
       </div>
       <div class="breathing" aria-hidden="true"></div>
@@ -313,24 +318,27 @@
           <div class="contact-container" data-animate="fade-up">
             <form action="https://api.web3forms.com/submit" method="POST" class="contact-left">
               <div class="contact-left-title">
-                <h9>Get in touch</h9>
+                <h3 class="section-sub">Get in touch</h3>
                 <hr>
               </div>
               <input type="hidden" name="access_key" value="6501dcba-c393-449f-9ecb-28475d858f92">
-              <input type="text" name="name" placeholder="Your Name or Your Company" class="contact-inputs" required>
-              <input type="email" name="email" placeholder="Your Email Address" class="contact-inputs" required>
-              <textarea name="message" placeholder="Your Message" class="contact-inputs" rows="6" required></textarea>
+              <label class="visually-hidden" for="name">Your name</label>
+              <input id="name" type="text" name="name" placeholder="Your Name or Your Company" class="contact-inputs" required>
+              <label class="visually-hidden" for="email">Your email</label>
+              <input id="email" type="email" name="email" placeholder="Your Email Address" class="contact-inputs" required>
+              <label class="visually-hidden" for="message">Your message</label>
+              <textarea id="message" name="message" placeholder="Your Message" class="contact-inputs" rows="6" required></textarea>
               <button type="submit">Submit</button>
               <h4 style="color: var(--muted); margin-top: 10px">I aim to reply to all messages within 48 hours. Thank you for your feedback!</h4>
             </form>
-            <div class="contact-right"></div>
+            <div class="contact-right" aria-hidden="true"></div>
           </div>
         </div>
       </div>
       <div class="breathing" aria-hidden="true"></div>
     </section>
 
-    <a href="#Home" class="to-top" id="toTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
+    <a href="#Home" class="to-top" id="toTop" aria-label="Back to top"><i class="fas fa-arrow-up" aria-hidden="true"></i></a>
 
     <script>
       // =============================
