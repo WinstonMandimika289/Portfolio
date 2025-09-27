@@ -11,9 +11,7 @@
       crossorigin="anonymous"
     />
     <style>
-      /* =============================
-         Base + Theme
-      ============================== */
+      /* ============================= Base + Theme ============================== */
       :root {
         --bg: #0b0f17;
         --panel: #121826;
@@ -41,17 +39,13 @@
       img { display: block; max-width: 100%; }
       iframe { border: 0; width: 100%; }
 
-      /* =============================
-         Motion preferences
-      ============================== */
+      /* ============================= Motion preferences ============================== */
       @media (prefers-reduced-motion: reduce) {
         * { animation: none !important; transition: none !important; }
         html { scroll-behavior: auto; }
       }
 
-      /* =============================
-         Navbar
-      ============================== */
+      /* ============================= Navbar ============================== */
       .navbar {
         position: sticky; top: 0; z-index: 50;
         backdrop-filter: blur(8px);
@@ -90,9 +84,7 @@
       .navbar__toggle.active .bar:nth-child(2){ opacity: 0; }
       .navbar__toggle.active .bar:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
 
-      /* =============================
-         Hero
-      ============================== */
+      /* ============================= Hero ============================== */
       .hero { position: relative; min-height: 78vh; display: grid; place-items: center; overflow: hidden; }
       .hero::before{
         content:""; position:absolute; inset:-40%; background: conic-gradient(from 0deg, rgba(106,169,255,.1), rgba(124,243,255,.06), transparent 60%);
@@ -113,10 +105,8 @@
       .btn-pulse { animation: pulse 2.2s ease 1.2s 2; }
       @keyframes pulse { 0%,100%{ box-shadow: 0 0 0 0 rgba(106,169,255,.0); } 50%{ box-shadow: 0 0 0 18px rgba(106,169,255,.12);} }
 
-      /* =============================
-         Sections
-      ============================== */
-      section, .MyCV, .Projects, .DesignWork, .Feedback { padding: 64px 20px; }
+      /* ============================= Sections ============================== */
+      section, .MyCV, .Projects, .DesignWork, .Feedback { padding: 64px 20px; scroll-margin-top: 80px; }
       .section-inner { max-width: 1120px; margin: 0 auto; }
 
       /* Cards / grids */
@@ -152,12 +142,9 @@
       .contact-inputs:focus { box-shadow: 0 8px 24px rgba(124,243,255,.18); transform: translateY(-1px); }
       .contact-left button { background: linear-gradient(135deg, var(--brand), var(--brand-2)); border: 0; border-radius: 14px; padding: 12px 16px; font-weight: 700; cursor: pointer; color: #06121e; box-shadow: var(--shadow); }
 
-      /* =============================
-         On-scroll animation system
-      ============================== */
+      /* ============================= On-scroll animation system ============================== */
       [data-animate] { opacity: 0; transform: translateY(16px) scale(.98); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
       .in-view { opacity: 1; transform: none; }
-      /* Variants */
       [data-animate="fade-up"] { transform: translateY(18px); }
       [data-animate="fade-right"] { transform: translateX(-24px); }
       [data-animate="fade-left"] { transform: translateX(24px); }
@@ -186,7 +173,7 @@
     <!-- Navbar Section -->
     <nav class="navbar" data-animate="fade-down">
       <div class="navbar__container">
-        <a href="#Home" id="navLogo" aria-label="Go to Home"><img src="/WorkImages/Untitled-3.png" alt="Winston logo" height="50"></a>
+        <a href="#Home" id="navLogo" aria-label="Go to Home"><img src="WorkImages/Untitled-3.png" alt="Winston logo" height="50"></a>
         <div class="navbar__toggle" id="mobile-menu" aria-label="Open menu" aria-expanded="false" role="button" tabindex="0" aria-controls="navMenu">
           <span class="bar"></span> <span class="bar"></span> <span class="bar"></span>
         </div>
@@ -204,7 +191,6 @@
     <header class="hero" id="Home">
       <div class="hero__container" data-animate="zoom-in">
         <h1 class="hero__heading" data-animate="fade-up" style="--delay:140ms">Welcome to my <span>Portfolio</span></h1>
-        <!-- Use anchor styled as button (valid) instead of button > a nesting -->
         <a class="main__btn btn-pulse" href="#MyCV" role="button" data-animate="fade-up" style="--delay:320ms">Explore</a>
         <p class="hero__description" data-animate="fade-up" style="--delay:520ms">Junior Software Developer</p>
       </div>
@@ -215,193 +201,9 @@
       <div class="main__container">
         <div class="main__img--container" data-animate="fade-right">
           <div class="main__img--card">
-            <iframe src="/MyCV.pdf" title="Winston CV PDF" loading="lazy" height="700"></iframe>
+            <iframe src="MyCV.pdf" title="Winston CV PDF" loading="lazy" height="700"></iframe>
           </div>
         </div>
         <div class="main__content" data-animate="fade-left">
-          <a class="main__btn" href="/MyCV.pdf">View CV</a>
-          <h5>Explore my work in C#, HTML, CSS, and JavaScript as I launch my career as a Software Developer</h5>
-        </div>
-      </div>
-      <div class="breathing" aria-hidden="true"></div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="Projects" id="Projects">
-      <div class="section-inner">
-        <h1>C#, HTML, CSS, and JavaScript</h1>
-        <div class="services__wrapper stagger" data-animate="fade-up">
-          <div class="services__card" style="--i:0">
-            <span class="card-title">Php, Html, JS &amp; CSS</span>
-            <img src="/Images/glow.png" alt="Glow with Chlo website screenshot" height="200" loading="lazy">
-            <div class="services__btn"><a class="services__link" href="https://glow-with-chlo.com/index.html">Visit Website</a></div>
-          </div>
-          <div class="services__card" style="--i:1">
-            <span class="card-title">ERD Model (NHS Demo) - Database &amp; Big Data Module (MSc)</span>
-            <img src="/ERD-Model.png" alt="ERD model diagram preview" height="200" loading="lazy">
-            <div class="services__btn"><a class="services__link" href="https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&target=blank&highlight=0000ff&layers=1&nav=1&title=ERD%20Model.drawio&dark=0">View ERD Model</a></div>
-          </div>
-          <div class="services__card" style="--i:2">
-            <span class="card-title">C#</span>
-            <img src="/WorkImages/SpanishQuizphoto.jpg" alt="Spanish quiz app screenshot" height="200" loading="lazy">
-            <div class="services__btn"><a class="services__link" href="/WorkImages/SpanishQuizVideo.mp4">Watch Video</a></div>
-          </div>
-          <div class="services__card" style="--i:3">
-            <span class="card-title">C# &amp; Unity</span>
-            <img src="/WorkImages/recycleGame.png" alt="Recycle game screenshot" height="200" loading="lazy">
-            <div class="services__btn"><a class="services__link" href="/WorkImages/EcorunnergameplayNew.mp4">Watch Video</a></div>
-          </div>
-          <div class="services__card" style="--i:4">
-            <span class="card-title">C#</span>
-            <img src="/WorkImages/Todolist.png" alt="To-do list app screenshot" height="200" loading="lazy">
-            <div class="services__btn"><a class="services__link" href="/ToDoListVideo.mp4">Watch Video</a></div>
-          </div>
-          <div class="services__card" style="--i:5">
-            <span class="card-title">HTML, CSS &amp; JavaScript</span>
-            <img src="/WorkImages/QuizSite.png" alt="Quiz website screenshot" height="200" loading="lazy">
-            <div class="services__btn"><a class="services__link" href="/QuizSite/Quiz1.html">Visit</a></div>
-          </div>
-          <div class="services__card" style="--i:6">
-            <span class="card-title">HTML &amp; CSS</span>
-            <img src="/Images/Doc-Website.jpg" alt="Documentary website screenshot" height="200" loading="lazy">
-            <div class="services__btn"><a class="services__link" href="/Documentary/index.html">Visit</a></div>
-          </div>
-        </div>
-      </div>
-      <div class="breathing" aria-hidden="true"></div>
-    </section>
-
-    <!-- Design Work Section -->
-    <section class="DesignWork" id="DesignWork">
-      <h2 class="section-title">Design Work</h2>
-      <div class="services__wrapper stagger" data-animate="fade-up">
-        <div class="services__card" style="--i:0">
-          <img src="/WorkImages/EducateFXLogo1.png" alt="EducateFX logo" height="250" loading="lazy">
-          <div class="services__btn"><a class="services__link" href="/WorkImages/EducateFXLogo1.png">View</a></div>
-        </div>
-        <div class="services__card" style="--i:1">
-          <img src="/WorkImages/logo1.png" alt="Logo 1" height="250" loading="lazy">
-          <div class="services__btn"><a class="services__link" href="/WorkImages/logo1.png">View</a></div>
-        </div>
-        <div class="services__card" style="--i:2">
-          <img src="/WorkImages/WMLogo.png" alt="WM logo" height="250" loading="lazy">
-          <div class="services__btn"><a class="services__link" href="/WorkImages/WMlogo.png">View</a></div>
-        </div>
-        <div class="services__card" style="--i:3">
-          <img src="/WorkImages/WMlogo2.png" alt="WM logo 2" height="250" loading="lazy">
-          <div class="services__btn"><a class="services__link" href="/WorkImages/WMlogo2.png">View</a></div>
-        </div>
-        <div class="services__card" style="--i:4">
-          <img src="/WorkImages/Untitled-3.png" alt="Untitled-3" height="250" loading="lazy">
-          <div class="services__btn"><a class="services__link" href="/WorkImages/Untitled-3.png">View</a></div>
-        </div>
-        <div class="services__card" style="--i:5">
-          <img src="/WorkImages/PPPLogo.png" alt="PPP Logo" height="250" loading="lazy">
-          <div class="services__btn"><a class="services__link" href="/WorkImages/PPPLogo.png">View</a></div>
-        </div>
-        <div class="services__card" style="--i:6">
-          <img src="/WorkImages/whitepng.png" alt="White png" height="250" loading="lazy">
-          <div class="services__btn"><a class="services__link" href="/WorkImages/whitepng.png">View</a></div>
-        </div>
-        <div class="services__card" style="--i:7">
-          <img src="/WorkImages/dmf.png" alt="DMF" height="250" loading="lazy">
-          <div class="services__btn"><a class="services__link" href="/WorkImages/dmf.png">View</a></div>
-        </div>
-      </div>
-      <div class="breathing" aria-hidden="true"></div>
-    </section>
-
-    <!-- Feedback Section -->
-    <section class="Feedback" id="Feedback">
-      <div class="main__container">
-        <div class="main__img--container">
-          <div class="contact-container" data-animate="fade-up">
-            <form action="https://api.web3forms.com/submit" method="POST" class="contact-left">
-              <div class="contact-left-title">
-                <h3 class="section-sub">Get in touch</h3>
-                <hr>
-              </div>
-              <input type="hidden" name="access_key" value="6501dcba-c393-449f-9ecb-28475d858f92">
-              <label class="visually-hidden" for="name">Your name</label>
-              <input id="name" type="text" name="name" placeholder="Your Name or Your Company" class="contact-inputs" required>
-              <label class="visually-hidden" for="email">Your email</label>
-              <input id="email" type="email" name="email" placeholder="Your Email Address" class="contact-inputs" required>
-              <label class="visually-hidden" for="message">Your message</label>
-              <textarea id="message" name="message" placeholder="Your Message" class="contact-inputs" rows="6" required></textarea>
-              <button type="submit">Submit</button>
-              <h4 style="color: var(--muted); margin-top: 10px">I aim to reply to all messages within 48 hours. Thank you for your feedback!</h4>
-            </form>
-            <div class="contact-right" aria-hidden="true"></div>
-          </div>
-        </div>
-      </div>
-      <div class="breathing" aria-hidden="true"></div>
-    </section>
-
-    <a href="#Home" class="to-top" id="toTop" aria-label="Back to top"><i class="fas fa-arrow-up" aria-hidden="true"></i></a>
-
-    <script>
-      // =============================
-      // IntersectionObserver animations
-      // =============================
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('in-view');
-            // Once animated, unobserve to prevent repeated triggers
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
-
-      document.querySelectorAll('[data-animate]').forEach((el) => observer.observe(el));
-
-      // =============================
-      // Mobile menu toggle with animation
-      // =============================
-      const toggle = document.getElementById('mobile-menu');
-      const menu = document.getElementById('navMenu');
-      toggle?.addEventListener('click', () => {
-        const open = menu.classList.toggle('is-open');
-        toggle.classList.toggle('active', open);
-        toggle.setAttribute('aria-expanded', String(open));
-      });
-      toggle?.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle.click(); }});
-
-      // Close mobile menu when clicking a link
-      menu?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-        if (menu.classList.contains('is-open')) { menu.classList.remove('is-open'); toggle.classList.remove('active'); toggle.setAttribute('aria-expanded', 'false'); }
-      }));
-
-      // =============================
-      // Card spotlight hover following cursor
-      // =============================
-      document.querySelectorAll('.services__card').forEach((card) => {
-        card.addEventListener('pointermove', (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left; const y = e.clientY - rect.top;
-          card.style.setProperty('--x', x + 'px');
-          card.style.setProperty('--y', y + 'px');
-        });
-      });
-
-      // =============================
-      // Scroll-to-top reveal
-      // =============================
-      const toTop = document.getElementById('toTop');
-      const showTop = () => {
-        const scrolled = window.scrollY || document.documentElement.scrollTop;
-        toTop.classList.toggle('visible', scrolled > 600);
-      };
-      window.addEventListener('scroll', showTop, { passive: true });
-      showTop();
-
-      // =============================
-      // Stagger support: add index CSS var (--i)
-      // =============================
-      document.querySelectorAll('.stagger').forEach((grid) => {
-        [...grid.children].forEach((child, i) => child.style.setProperty('--i', i));
-      });
-    </script>
-  </body>
-</html>
+          <a class="main__btn" href="MyCV.pdf">View CV</a>
+          <h5>Explore my work in C#, HTML, CSS, and JavaScript as I launch my career as a Software
