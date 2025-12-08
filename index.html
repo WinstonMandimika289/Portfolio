@@ -20,6 +20,7 @@
         color: #fff;
         border-top: 5px solid #FFD700; /* Zimbabwe Gold */
         border-bottom: 5px solid #006400; /* Zimbabwe Green */
+        position: relative;
       }
       
       .bantu-grid {
@@ -34,8 +35,20 @@
 
       .bantu-text h1 {
         font-size: 3.5rem;
-        margin-bottom: 20px;
+        margin-bottom: 5px;
         color: #FFD700; /* Gold */
+      }
+
+      .coming-soon-badge {
+        background: #e41c1c;
+        color: white;
+        padding: 5px 15px;
+        font-size: 1rem;
+        border-radius: 5px;
+        display: inline-block;
+        margin-bottom: 20px;
+        font-weight: bold;
+        text-transform: uppercase;
       }
 
       .bantu-text p {
@@ -45,8 +58,16 @@
       }
 
       .bantu-highlight {
-        color: #006400; /* Green */
+        color: #FFD700; /* Gold */
         font-weight: bold;
+      }
+
+      .test-info {
+        background: rgba(0, 100, 0, 0.2);
+        border-left: 4px solid #006400;
+        padding: 15px;
+        margin: 20px 0;
+        font-size: 1.1rem;
       }
 
       .video-box {
@@ -102,17 +123,18 @@
         </div>
 
         <div class="bantu-text" data-aos="fade-left">
+          <span class="coming-soon-badge">Coming Soon</span>
           <h1>Bantu Learn</h1>
           <p>
-            Bridging the gap for the <span class="bantu-highlight">Diaspora</span>. 
-            Bantu Learn is an AI-powered Shona language platform built with a high-performance architecture to facilitate cultural reconnection.
+            Bridging the gap for the diaspora. Bantu Learn is an AI-powered Shona language platform using modern architecture to reconnect heritage through technology.
           </p>
-          <p>
-            Currently in <span class="bantu-highlight">Final Stage Development</span>. 
-            Available on Android for internal testing. Request access below to trial the future of heritage learning.
-          </p>
-          <br>
-          <button class="main__btn" style="background: #006400;"><a href="mailto:your-email@example.com?subject=Bantu Learn Beta">Test the App</a></button>
+          
+          <div class="test-info">
+            <strong>Join the Tester Program:</strong><br>
+            The app is currently in <span class="bantu-highlight">Internal Testing</span> on Android. To join, use the form at the bottom of the page and provide your <span class="bantu-highlight">Google Play Store Email</span>.
+          </div>
+
+          <button class="main__btn" style="background: #006400;"><a href="#Feedback">Sign Up to Test</a></button>
         </div>
       </div>
     </div>
@@ -125,13 +147,13 @@
         <div class="main__content">
             <button class="main__btn"><a href="/Winston_Mandimika_CV.pdf">View CV</a></button>
             <br><br>
-            <h5>Launching my career as a Software Developer through professional-grade applications.</h5>
+            <h5>Software Development Portfolio & Professional Experience</h5>
         </div>
       </div>
     </div>
 
     <div class="Projects" id="Projects">
-      <h1 style="color: white; text-align: center;" data-aos="fade-down">Software Development Projects</h1>
+      <h1 style="color: white; text-align: center;" data-aos="fade-down">Current Projects</h1>
       <div class="services__wrapper">
         <div class="services__card" data-aos="flip-up">
           <h8> Php, Html, JS & CSS</h8>
@@ -143,22 +165,24 @@
           <img src="/WorkImages/recycleGame.png" height="200px">
           <div class="services__btn"><a href="/WorkImages/EcorunnergameplayNew.mp4"><button>Watch Video</button></a></div>
         </div>
-        </div>
+      </div>
     </div>
 
     <div class="Feedback" id="Feedback" data-aos="fade-up">
       <div class="main__container">
         <form action="https://api.web3forms.com/submit" method="POST" class="contact-left">
             <div class="contact-left-title">
-                <h9>Get in touch</h9>
+                <h9>Join the Bantu Learn Tester Program</h9>
                 <hr>
             </div>
             <input type="hidden" name="access_key" value="6501dcba-c393-449f-9ecb-28475d858f92">
-            <input type="text" name="name" placeholder="Name" class="contact-inputs" required>
-            <input type="email" name="email" placeholder="Email" class="contact-inputs" required>
-            <textarea name="message" placeholder="Message" class="contact-inputs" required></textarea>
-            <button style="background: #006400;">Submit</button>
-            <p style="color: white; margin-top: 20px;">Fast Response (within 48 hours).</p>
+            <input type="hidden" name="subject" value="New Bantu Learn Tester Request">
+            <input type="text" name="name" placeholder="Full Name" class="contact-inputs" required>
+            <input type="email" name="email" placeholder="Google Play Store Email (Required for Beta)" class="contact-inputs" required>
+            <textarea name="message" placeholder="Optional: Message or Feedback" class="contact-inputs" required></textarea>
+            
+            <button style="background: #006400;">Join Testing track</button>
+            <p style="color: white; margin-top: 20px;">Submissions are sent to <span class="bantu-highlight">bantulearn.info@gmail.com</span></p>
         </form>
       </div>
     </div>
