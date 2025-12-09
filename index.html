@@ -13,14 +13,16 @@
     />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-      /* Zimbabwe Theme Styling */
+      /* Zimbabwe Inspired Section Styling */
       .zimbabwe-theme {
         background: #131313;
-        padding: 80px 0;
+        padding: 100px 0;
         color: #fff;
-        border-top: 5px solid #FFD700;
-        border-bottom: 5px solid #006400;
+        border-top: 5px solid #FFD700; 
+        border-bottom: 5px solid #006400; 
+        position: relative;
       }
+      
       .bantu-grid {
         display: grid;
         grid-template-columns: 1.2fr 0.8fr;
@@ -30,25 +32,72 @@
         margin: 0 auto;
         padding: 0 20px;
       }
-      .bantu-text h1 { font-size: 3.5rem; color: #FFD700; margin-bottom: 10px; }
-      .coming-soon-badge { background: #e41c1c; color: white; padding: 5px 12px; border-radius: 4px; font-weight: bold; }
-      .bantu-highlight { color: #FFD700; font-weight: bold; }
-      
-      /* Beta Form Styling */
-      .beta-form-container {
-        max-width: 600px;
-        margin: 40px auto;
-        padding: 30px;
-        background: #1f1f1f;
-        border-radius: 10px;
-        border: 2px solid #006400;
+
+      .bantu-text h1 {
+        font-size: 3.5rem;
+        margin-bottom: 5px;
+        color: #FFD700;
       }
-      .beta-input {
+
+      .coming-soon-badge {
+        background: #e41c1c;
+        color: white;
+        padding: 5px 15px;
+        font-size: 1rem;
+        border-radius: 5px;
+        display: inline-block;
+        margin-bottom: 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+
+      .bantu-text p {
+        font-size: 1.4rem;
+        line-height: 1.8;
+        color: #f4f4f4;
+      }
+
+      .beta-signup-container {
+        max-width: 1200px;
+        margin: 50px auto 0;
+        padding: 40px;
+        background: #1a1a1a;
+        border: 2px solid #FFD700;
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .beta-form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
         width: 100%;
-        padding: 12px;
-        margin: 10px 0;
+        justify-content: center;
+      }
+
+      .beta-input {
+        flex: 1;
+        min-width: 250px;
+        padding: 15px;
         border-radius: 5px;
         border: none;
+        font-size: 1rem;
+      }
+
+      .video-box {
+        border: 4px solid #FFD700;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+      }
+
+      @media screen and (max-width: 968px) {
+        .bantu-grid {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
       }
     </style>
   </head>
@@ -57,7 +106,8 @@
       <div class="navbar__container">
         <a href="#Home" id="navLogo"><img src="/WorkImages/Untitled-3.png" height="50"></a>
         <div class="navbar__toggle" id="mobile-menu">
-          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+          <span class="bar"></span> <span class="bar"></span>
+          <span class="bar"></span>
         </div>
         <ul class="navbar__menu">
           <li class="navbar__item"><a href="#Home" class="navbar__links">Home</a></li>
@@ -72,7 +122,7 @@
     <div class="hero" id="Home">
       <div class="hero__container" data-aos="fade-up">
         <h1 class="hero__heading">Welcome to my <span>Portfolio</span></h1>
-        <button class="main__btn"><a href="#BantuLearn">Bantu Learn (Pre-Launch)</a></button>
+        <button class="main__btn"><a href="#BantuLearn">Bantu Learn Beta Phase</a></button>
         <p class="hero__description">Junior Software Developer</p>
       </div>
     </div>
@@ -87,20 +137,21 @@
         <div class="bantu-text" data-aos="fade-left">
           <span class="coming-soon-badge">Coming Soon</span>
           <h1>Bantu Learn</h1>
-          <p>AI-powered heritage reconnection for the diaspora.</p>
-          <div style="background: rgba(0,100,0,0.2); padding: 15px; margin-top: 20px;">
-            <strong>Beta Program:</strong> We are looking for testers! Submit your Play Store email below.
-          </div>
+          <p>Closing the linguistic gap for the diaspora. An AI-powered Shona platform built to preserve culture through technology.</p>
+          <p style="font-size: 1.1rem; color: #FFD700; margin-top: 20px;">
+            Request phase 2 tester access. Provide your Google Play email below.
+          </p>
         </div>
       </div>
 
-      <div class="beta-form-container" data-aos="fade-up">
-        <h2 style="text-align: center; color: #FFD700;">Join Beta Tester Program</h2>
-        <form action="mailto:bantulearn.info@gmail.com" method="POST" enctype="text/plain">
+      <div class="beta-signup-container" data-aos="fade-up">
+        <h2 style="color: #fff; margin-bottom: 20px;">Beta Email Submission</h2>
+        <form action="https://api.web3forms.com/submit" method="POST" class="beta-form">
+          <input type="hidden" name="access_key" value="23024547-e7c9-4eb9-915f-58effa7985eb">
+          <input type="hidden" name="subject" value="Bantu Learn Phase 2 Beta Application">
           <input type="text" name="name" placeholder="Full Name" class="beta-input" required>
-          <input type="email" name="email" placeholder="Play Store Email (Required)" class="beta-input" required>
-          <input type="hidden" name="Subject" value="Bantu Learn Beta Signup">
-          <button type="submit" class="main__btn" style="width: 100%; background: #006400;">Send Direct Email</button>
+          <input type="email" name="email" placeholder="Play Store Email Address" class="beta-input" required>
+          <button type="submit" class="main__btn" style="background: #006400; border: none; flex: 0.5;">Submit for Testing</button>
         </form>
       </div>
     </div>
@@ -114,32 +165,32 @@
           <div class="services__btn"><a href="https://glow-with-chlo.com/index.html"><button>Visit Website</button></a></div>
         </div>
         <div class="services__card" data-aos="flip-up">
-          <h8>ERD (MSc Module)</h8>
+          <h8>ERD Module (MSc)</h8>
           <img src="/ERD.png" style="height: 200px;">
           <div class="services__btn"><a href="https://tinyurl.com/yef7t8yc"><button>View ERD</button></a></div>
         </div>
         <div class="services__card" data-aos="flip-up">
-          <h8>C# Game</h8>
+          <h8>C# Game Project</h8>
           <img src="/WorkImages/SpanishQuizphoto.jpg" style="height: 200px;">
           <div class="services__btn"><a href="/WorkImages/SpanishQuizVideo.mp4"><button>Watch Video</button></a></div>
         </div>
         <div class="services__card" data-aos="flip-up">
-          <h8>C# & Unity</h8>
+          <h8>C# & Unity Engine</h8>
           <img src="/WorkImages/recycleGame.png" height="200px">
           <div class="services__btn"><a href="/WorkImages/EcorunnergameplayNew.mp4"><button>Watch Video</button></a></div>
         </div>
         <div class="services__card" data-aos="flip-up">
-          <h8>C# App</h8>
+          <h8>C# Productivity App</h8>
           <img src="/WorkImages/Todolist.png" style="height: 200px;">
           <div class="services__btn"><a href="/ToDoListVideo.mp4"><button>Watch Video</button></a></div>
         </div>
         <div class="services__card" data-aos="flip-up">
-          <h8>JS Quiz Site</h8>
+          <h8>JS Application</h8>
           <img src="/WorkImages/QuizSite.png" height="200px">
-          <div class="services__btn"><a href="/QuizSite/Quiz1.html"><button>Visit</button></a></div>
+          <div class="services__btn"><a href="/QuizSite/Quiz1.html"><button>Visit Site</button></a></div>
         </div>
         <div class="services__card" data-aos="flip-up">
-          <h8>HTML & CSS Docs</h8>
+          <h8>HTML & CSS Documentation</h8>
           <img src="/Images/Doc-Website.jpg" height="200px">
           <div class="services__btn"><a href="/Documentary/index.html"><button>Visit</button></a></div>
         </div>
@@ -147,10 +198,11 @@
     </div>
 
     <div class="DesignWork" id="DesignWork">
-      <h9 data-aos="fade-up">Design Work</h9>
+      <h9 data-aos="fade-up">Design Portfolio</h9>
       <div class="services__wrapper">
         <div class="services__card" data-aos="zoom-in"><img src="/WorkImages/EducateFXLogo1.png" height="250"></div>
         <div class="services__card" data-aos="zoom-in"><img src="/WorkImages/logo1.png" height="250"></div>
+        <div class="services__card" data-aos="zoom-in"><img src="/WorkImages/WMlogo.png" height="250"></div>
         <div class="services__card" data-aos="zoom-in"><img src="/WorkImages/Untitled-3.png" height="250"></div>
       </div>
     </div>
@@ -161,15 +213,15 @@
             <h9>General Feedback</h9>
             <input type="hidden" name="access_key" value="6501dcba-c393-449f-9ecb-28475d858f92">
             <input type="text" name="name" placeholder="Name" class="contact-inputs" required>
-            <input type="email" name="email" placeholder="Email" class="contact-inputs" required>
-            <textarea name="message" placeholder="General message..." class="contact-inputs" required></textarea>
-            <button>Submit</button>
+            <input type="email" name="email" placeholder="Your Email" class="contact-inputs" required>
+            <textarea name="message" placeholder="Portfolio Feedback..." class="contact-inputs" required></textarea>
+            <button>Send Message</button>
         </form>
       </div>
     </div>
 
     <script src="app.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>AOS.init({ duration: 1200 });</script>
+    <script>AOS.init({ duration: 1200, once: false });</script>
   </body>
 </html>
